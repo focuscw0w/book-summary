@@ -1,5 +1,5 @@
+import SearchOverlay from "./components/SearchBook/SearchOverlay/SearchOverlay";
 import classes from "./page.module.css";
-import SearchInput from "@/app/components/SearchInput/SearchInput";
 
 export default function Home() {
   return (
@@ -9,7 +9,7 @@ export default function Home() {
         <br />
         Let&#39;s summarize your favorite book!
       </h1>
-      <SearchInput />
+      <SearchOverlay />
     </>
   );
 }

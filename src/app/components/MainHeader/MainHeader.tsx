@@ -1,7 +1,7 @@
 import Icon from "../UI/Icon/Icon";
 import classes from "./MainHeader.module.css";
 
-export default function MainHeader() {
+const MainHeader = () => {
   return (
     <>
       <header className={classes.header}>
@@ -32,3 +32,5 @@ export default function MainHeader() {
     </>
   );
 }
+
+export default MainHeader;
