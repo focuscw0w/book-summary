@@ -10,9 +10,14 @@
     box-sizing: border-box;
 }
 
+:root {
+    --background-color: #f2dfce;
+    --link-hover-color: #c3b5a6;
+}
+
 body {
     font-family: "Roboto", sans-serif;;
-    background-color: #f2dfce;
+    background-color: var(--background-color);
 }
 
 .container {

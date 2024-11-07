@@ -6,6 +6,7 @@
 
 .heading {
     font-size: 1.5rem;
+    font-weight: bold;
 }
 
 .nav ul {
@@ -21,9 +22,12 @@
     display: flex;
     align-items: center;
     gap: .5rem;
-}
 
-.icon {
-    width: 20px;
-    height: 20px;
+    &:hover {
+        color: var(--link-hover-color);
+    }
+
+    &:hover path {
+        fill: var(--link-hover-color);
+    }
 }
