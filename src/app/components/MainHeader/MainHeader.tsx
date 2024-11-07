@@ -1,4 +1,4 @@
-import Icon from "./Icon";
+import Icon from "../UI/Icon/Icon";
 import classes from "./MainHeader.module.css";
 
 export default function MainHeader() {
