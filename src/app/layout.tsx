@@ -1,6 +1,7 @@
 "use client";
 import "./globals.css";
-import MainHeader from "@/app/components/MainHeader/MainHeader";
+import NavBar from "./components/layout/Navbar/NavBar";
+import Footer from "./components/layout/Footer/Footer";
 import TanStackProvider from "./providers/TanstackProvider";
 
 export default function RootLayout({
@@ -12,10 +13,11 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <div className="container">
-          <MainHeader />
+          <NavBar />
           <TanStackProvider>
             <div>{children}</div>
           </TanStackProvider>
+          <Footer />
         </div>
       </body>
     </html>

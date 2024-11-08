@@ -1,6 +1,8 @@
 import classes from "./SearchResults.module.css";
 import { Book } from "@/app/models/Book";
 
+import SearchItem from "../SearchItem/SearchItem";
+
 interface SearchResultsProps {
   data: { items: Book[] } | undefined;
   error: unknown;
@@ -12,16 +14,14 @@ const SearchResults = ({ data, error, isLoading }: SearchResultsProps) => {
   if (error instanceof Error) return <p>Error: {error.message}</p>;
 
   if (!data) {
-    return <p>Sorry, we could not get a book from the server</p>;
+    return;
   }
 
   return (
     <div className={classes.wrapper}>
       <ul>
         {data.items.map((book: Book) => (
-          <li key={book.id} className={classes.bookItem}>
-            {book.volumeInfo.title}
-          </li>
+          <SearchItem bookInfo={book.volumeInfo} key={book.id} />
         ))}
       </ul>
     </div>

@@ -3,8 +3,14 @@ import { Book } from "../models/Book";
 
 const apiProvider = new ApiProvider();
 
+interface BookResponse {
+  kind: string;
+  totalItems: number;
+  items: Book[];
+}
+
 const fetchBook = (query: string) => {
-    return apiProvider.get<{ items: Book[] }>(
+    return apiProvider.get<BookResponse>(
         `https://www.googleapis.com/books/v1/volumes?q=${query}`
       );
 }

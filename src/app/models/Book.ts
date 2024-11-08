@@ -9,7 +9,7 @@ export interface Book {
   searchInfo?: SearchInfo;
 }
 
-interface VolumeInfo {
+export interface VolumeInfo {
   title: string;
   authors?: string[];
   publisher?: string;

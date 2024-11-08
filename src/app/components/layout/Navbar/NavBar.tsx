@@ -1,7 +1,7 @@
-import Icon from "../UI/Icon/Icon";
-import classes from "./MainHeader.module.css";
+import Icon from "@/app/components/UI/Icon/Icon";
+import classes from "./Navbar.module.css";
 
-const MainHeader = () => {
+const Navbar = () => {
   return (
     <>
       <header className={classes.header}>
@@ -31,6 +31,6 @@ const MainHeader = () => {
       </header>
     </>
   );
-}
+};
 
-export default MainHeader;
+export default Navbar;
