@@ -1,6 +1,7 @@
 .heading {
   margin-top: 8rem;
   font-size: 3rem;
+  font-weight: normal;
   text-transform: uppercase;
   text-align: center;
 }

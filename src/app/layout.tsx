@@ -15,7 +15,7 @@ export default function RootLayout({
         <div className="container">
           <NavBar />
           <TanStackProvider>
-            <div>{children}</div>
+            <main>{children}</main>
           </TanStackProvider>
           <Footer />
         </div>

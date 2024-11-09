@@ -2,6 +2,7 @@ import classes from "./SearchResults.module.css";
 import { Book } from "@/app/models/Book";
 
 import SearchItem from "../SearchItem/SearchItem";
+import Spinner from "@/app/components/UI/Spinner/Spinner";
 
 interface SearchResultsProps {
   data: { items: Book[] } | undefined;
@@ -10,7 +11,7 @@ interface SearchResultsProps {
 }
 
 const SearchResults = ({ data, error, isLoading }: SearchResultsProps) => {
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <Spinner variant="Lines" color="#000000" />;
   if (error instanceof Error) return <p>Error: {error.message}</p>;
 
   if (!data) {

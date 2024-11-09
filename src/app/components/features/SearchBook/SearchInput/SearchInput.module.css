@@ -1,5 +1,6 @@
 .input {
   width: 30rem;
+  font-size: 1rem;
   margin-top: 2rem;
   padding: 0.8rem 2rem;
 
@@ -10,4 +11,8 @@
   border: 2px solid;
   border-radius: 2rem;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+  &:focus {
+    outline: none;
+  }
 }

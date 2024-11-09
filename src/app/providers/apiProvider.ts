@@ -40,9 +40,9 @@ class ApiProvider {
   }
 
   /*
-    Public method to make a POST request, taking an endpoint URL and a body object,
-    returning a Promise of type T
-     */
+    Public method to make a POST request, taking an endpoint URL
+   and a body object, returning a Promise of type T
+    */
   public async post<T>(endpoint: string, body: object): Promise<T> {
     const url = `${endpoint}&key=${this.apiKey}`;
     return this.request<T>(url, {

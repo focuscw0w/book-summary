@@ -1,4 +1,4 @@
-import SearchOverlay from "./components/SearchBook/SearchOverlay/SearchOverlay";
+import SearchOverlay from "./components/features/SearchBook/SearchOverlay/SearchOverlay";
 import classes from "./page.module.css";
 
 export default function Home() {
