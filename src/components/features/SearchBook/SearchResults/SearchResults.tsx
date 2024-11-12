@@ -1,8 +1,8 @@
 import classes from "./SearchResults.module.css";
-import { Book } from "@/app/models/Book";
+import { Book } from "@/models/Book";
 
 import SearchItem from "../SearchItem/SearchItem";
-import Spinner from "@/app/components/UI/Spinner/Spinner";
+import Spinner from "@/components/UI/Spinner/Spinner";
 
 interface SearchResultsProps {
   data: { items: Book[] } | undefined;

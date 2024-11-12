@@ -6,8 +6,8 @@ import { useQuery } from "@tanstack/react-query";
 import SearchInput from "../SearchInput/SearchInput";
 import SearchResults from "../SearchResults/SearchResults";
 
-import useDebounce from "@/app/hooks/useDebounce";
-import fetchBook from "@/app/api/fetchBook";
+import useDebounce from "@/hooks/useDebounce";
+import fetchBook from "@/api/fetchBook";
 import classes from "./SearchOverlay.module.css";
 
 const SearchOverlay = () => {
