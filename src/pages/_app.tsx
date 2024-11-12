@@ -1,20 +1,19 @@
-import "../globals.css"; 
+import type { ReactElement, ReactNode } from "react";
+import type { NextPage } from "next";
 import type { AppProps } from "next/app";
+import "../globals.css";
 
-import TanStackProvider from "../providers/TanstackProvider";
-import NavBar from "../components/layout/Navbar/NavBar";
-import Footer from "../components/layout/Footer/Footer";
-
-const App = ({ Component, pageProps }: AppProps) => {
-  return (
-    <div className="container">
-      <NavBar />
-      <TanStackProvider>
-        <Component {...pageProps} />
-      </TanStackProvider>
-      <Footer />
-    </div>
-  );
+export type NextPageWithLayout<P = unknown, IP = P> = NextPage<P, IP> & {
+  getLayout?: (page: ReactElement) => ReactNode;
 };
 
-export default App;
+type AppPropsWithLayout = AppProps & {
+  Component: NextPageWithLayout;
+};
+
+export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
+  // Use the layout defined at the page level, if available
+  const getLayout = Component.getLayout ?? ((page) => page);
+
+  return getLayout(<Component {...pageProps} />);
+}
