@@ -7,7 +7,7 @@ import SearchInput from "../SearchInput/SearchInput";
 import SearchResults from "../SearchResults/SearchResults";
 
 import useDebounce from "@/hooks/useDebounce";
-import fetchBook from "@/api/fetchBook";
+import fetchBook from "@/features/search/api/fetchBook";
 import classes from "./SearchOverlay.module.css";
 
 export default function SearchOverlay() {

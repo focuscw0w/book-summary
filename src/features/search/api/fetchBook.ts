@@ -1,5 +1,5 @@
-import ApiProvider from "../providers/ApiProvider";
-import { Book } from "../models/Book";
+import ApiProvider from "../../../provider/ApiProvider";
+import { Book } from "../../../models/Book";
 
 const apiProvider = new ApiProvider();
 

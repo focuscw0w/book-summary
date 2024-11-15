@@ -1,5 +1,5 @@
 import Head from "next/head";
-import SearchOverlay from "../components/features/SearchBook/SearchOverlay/SearchOverlay";
+import SearchOverlay from "../features/search/components/SearchOverlay/SearchOverlay";
 import classes from "./page.module.css";
 import MainLayout from "./layout";
 import { ReactNode } from "react";
