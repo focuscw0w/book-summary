@@ -10,7 +10,7 @@ import useDebounce from "@/hooks/useDebounce";
 import fetchBook from "@/api/fetchBook";
 import classes from "./SearchOverlay.module.css";
 
-const SearchOverlay = () => {
+export default function SearchOverlay() {
   const [searchQuery, setSearchQuery] = useState("");
   const debouncedQuery = useDebounce(searchQuery, 500);
 
@@ -33,5 +33,3 @@ const SearchOverlay = () => {
     </>
   );
 };
-
-export default SearchOverlay;

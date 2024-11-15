@@ -1,6 +1,6 @@
 import classes from "./Footer.module.css";
 
-const Footer = () => {
+export default function Footer() {
   return (
     <footer className={classes.footer}>
       <h5 className={classes.subtitle}>Book Summary</h5>
@@ -9,4 +9,3 @@ const Footer = () => {
   );
 };
 
-export default Footer;

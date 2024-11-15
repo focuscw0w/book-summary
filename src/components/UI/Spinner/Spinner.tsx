@@ -8,7 +8,7 @@ interface SpinnerSettings {
   color: string;
 }
 
-const Spinner = ({ variant, color }: SpinnerSettings) => {
+export default function Spinner({ variant, color }: SpinnerSettings) {
   return (
     <div className={classes.container}>
       <div className={classes.wrapper}>
@@ -32,6 +32,4 @@ const Spinner = ({ variant, color }: SpinnerSettings) => {
       </div>
     </div>
   );
-};
-
-export default Spinner;
+}

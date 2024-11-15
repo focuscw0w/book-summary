@@ -7,7 +7,7 @@ interface SearchItemProps {
   bookInfo: VolumeInfo;
 }
 
-const SearchItem = ({ bookInfo }: SearchItemProps) => {
+export default function SearchItem({ bookInfo }: SearchItemProps) {
   return (
     <li className={classes.item}>
       <div className={classes.thumbnail}>
@@ -43,6 +43,4 @@ const SearchItem = ({ bookInfo }: SearchItemProps) => {
       </div>
     </li>
   );
-};
-
-export default SearchItem;
+}

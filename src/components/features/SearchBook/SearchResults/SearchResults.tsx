@@ -10,7 +10,11 @@ interface SearchResultsProps {
   isLoading: boolean;
 }
 
-const SearchResults = ({ data, error, isLoading }: SearchResultsProps) => {
+export default function SearchResults({
+  data,
+  error,
+  isLoading,
+}: SearchResultsProps) {
   if (isLoading) return <Spinner variant="Lines" color="#000000" />;
   if (error instanceof Error) return <p>Error: {error.message}</p>;
 
@@ -27,6 +31,4 @@ const SearchResults = ({ data, error, isLoading }: SearchResultsProps) => {
       </ul>
     </div>
   );
-};
-
-export default SearchResults;
+}

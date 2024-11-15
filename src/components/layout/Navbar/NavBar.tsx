@@ -1,7 +1,7 @@
 import Icon from "@/components/UI/Icon/Icon";
 import classes from "./Navbar.module.css";
 
-const Navbar = () => {
+export default function Navbar() {
   return (
     <>
       <header className={classes.header}>
@@ -33,4 +33,3 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;

@@ -7,7 +7,7 @@ interface MainLayoutProps {
   children: ReactNode;
 }
 
-const MainLayout = ({ children }: MainLayoutProps) => {
+export default function MainLayout({ children }: MainLayoutProps) {
   return (
     <TanStackProvider>
       <div className="container">
@@ -17,6 +17,4 @@ const MainLayout = ({ children }: MainLayoutProps) => {
       </div>
     </TanStackProvider>
   );
-};
-
-export default MainLayout;
+}

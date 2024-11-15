@@ -8,7 +8,10 @@ interface SearchInputProps {
   setSearchQuery: Dispatch<SetStateAction<string>>;
 }
 
-const SearchInput = ({ searchQuery, setSearchQuery }: SearchInputProps) => {
+export default function SearchInput({
+  searchQuery,
+  setSearchQuery,
+}: SearchInputProps) {
   return (
     <div>
       <input
@@ -20,6 +23,4 @@ const SearchInput = ({ searchQuery, setSearchQuery }: SearchInputProps) => {
       />
     </div>
   );
-};
-
-export default SearchInput;
+}
