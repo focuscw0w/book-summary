@@ -23,7 +23,7 @@ export default function SearchResults({
   }
 
   return (
-    <div className={classes.wrapper}>
+    <div className={classes.container}>
       <ul>
         {data.items.map((book: Book) => (
           <SearchItem bookInfo={book.volumeInfo} key={book.id} />

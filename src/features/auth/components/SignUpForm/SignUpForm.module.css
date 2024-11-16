@@ -1,0 +1,46 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.form {
+  padding: 2rem;
+  border-radius: 8px;
+  background-color: var(--background-color-secondary);
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+    rgba(0, 0, 0, 0.22) 0px 15px 12px;
+  color: #ffffff;
+}
+
+.title {
+  text-align: center;
+}
+
+.button {
+  margin: 0.8rem 0;
+  padding: 0.7rem 1rem;
+  background-color: var(--button-color);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #7a9cc0;
+  }
+}
+
+.link {
+  color: var(--button-color);
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+}

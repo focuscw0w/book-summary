@@ -1,4 +1,10 @@
-import { createContext, ReactNode, useContext, useEffect, useState } from "react";
+import {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { auth } from "@/firebase/config";
 import { User, UserCredential } from "firebase/auth";
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
@@ -40,8 +46,10 @@ export function AuthProvider({ children }: AuthProviderProps) {
     try {
       console.log("User registered successfully!");
       return await createUserWithEmailAndPassword(email, password);
-    } catch(error: any) {
-      console.log(error.message)
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        console.log(error.message);
+      }
     }
   }
 

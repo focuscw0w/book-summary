@@ -7,17 +7,23 @@
 }
 
 :root {
-  --background-color: #f2dfce;
+  --background-color-main: #f2dfce;
+  --background-color-secondary: #2e2e2e;
+  --button-color: #6a8caf;
   --link-hover-color: #c3b5a6;
 }
 
 body {
   font-family: "Roboto", sans-serif;
-  background-color: var(--background-color);
+  background-color: var(--background-color-main);
 }
 
 li {
   list-style-type: none;
+}
+
+a {
+  text-decoration: none;
 }
 
 .container {
