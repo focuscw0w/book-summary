@@ -1,6 +1,6 @@
 import { ChangeEvent, useState } from "react";
 
-const useInput = (initialValue: string) => {
+export default function useInput(initialValue: string) {
   const [value, setValue] = useState(initialValue);
   const [error, setError] = useState(false);
 
@@ -14,6 +14,4 @@ const useInput = (initialValue: string) => {
     onChange: handleChange,
     setError,
   };
-};
-
-export default useInput;
+}

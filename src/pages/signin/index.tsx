@@ -3,20 +3,20 @@ import Head from "next/head";
 
 import { AuthProvider } from "@/features/auth/context/AuthProvider";
 import AuthLayout from "@/features/auth/components/layout/AuthLayout";
-import SignUpForm from "@/features/auth/components/forms/SignUpForm";
+import SignInForm from "@/features/auth/components/forms/SignInForm";
 
-export default function SignUpPage() {
+export default function SignInPage() {
   return (
     <>
       <Head>
-        <title>Sign Up</title>
+        <title>Sign In</title>
       </Head>
-      <SignUpForm />
+      <SignInForm />
     </>
   );
 }
 
-SignUpPage.getLayout = function getLayout(page: ReactNode) {
+SignInPage.getLayout = function getLayout(page: ReactNode) {
   return (
     <AuthProvider>
       <AuthLayout>{page}</AuthLayout>

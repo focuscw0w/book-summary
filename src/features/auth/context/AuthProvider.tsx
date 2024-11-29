@@ -7,11 +7,18 @@ import {
 } from "react";
 import { auth } from "@/firebase/config";
 import { User, UserCredential } from "firebase/auth";
-import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
+import {
+  useCreateUserWithEmailAndPassword,
+  useSignInWithEmailAndPassword,
+} from "react-firebase-hooks/auth";
 
 interface AuthContextType {
   currentUser: User | null;
   signUp: (
+    email: string,
+    password: string
+  ) => Promise<UserCredential | undefined>;
+  signIn: (
     email: string,
     password: string
   ) => Promise<UserCredential | undefined>;
@@ -39,13 +46,37 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const [createUserWithEmailAndPassword] =
     useCreateUserWithEmailAndPassword(auth);
 
+  const [signInWithEmailAndPassword] = useSignInWithEmailAndPassword(auth);
+
+  // TODO validation and refactoring
   async function signUp(
     email: string,
     password: string
   ): Promise<UserCredential | undefined> {
     try {
-      console.log("User registered successfully!");
-      return await createUserWithEmailAndPassword(email, password);
+      const userCredential = await createUserWithEmailAndPassword(
+        email,
+        password
+      );
+      console.log(userCredential);
+      return userCredential;
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        console.log(error.message);
+      }
+    }
+  }
+
+  // TODO validation and refactoring
+  async function signIn(
+    email: string,
+    password: string
+  ): Promise<UserCredential | undefined> {
+    try {
+      console.log("User signed in successfully!");
+      const userCredential = await signInWithEmailAndPassword(email, password);
+      console.log(userCredential);
+      return userCredential;
     } catch (error: unknown) {
       if (error instanceof Error) {
         console.log(error.message);
@@ -66,6 +97,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const value = {
     currentUser,
     signUp,
+    signIn,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

@@ -1,5 +1,5 @@
 import Head from "next/head";
-import SearchOverlay from "../features/search/components/SearchOverlay/SearchOverlay";
+import SearchWrapper from "../features/search/components/SearchWrapper/SearchOverlay";
 import classes from "./page.module.css";
 import MainLayout from "./layout";
 import { ReactNode } from "react";
@@ -15,7 +15,7 @@ export default function Home() {
         <br />
         Let&#39;s summarize your favorite book!
       </h1>
-      <SearchOverlay />
+      <SearchWrapper />
     </div>
   );
 }
