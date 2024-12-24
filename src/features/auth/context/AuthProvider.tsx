@@ -7,17 +7,11 @@ import {
 } from "react";
 import { auth } from "@/firebase/config";
 import { User, UserCredential } from "firebase/auth";
-import {
-  useCreateUserWithEmailAndPassword,
-  useSignInWithEmailAndPassword,
-} from "react-firebase-hooks/auth";
+import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 
 interface AuthContextType {
   currentUser: User | null;
-  signUp: (
-    email: string,
-    password: string
-  ) => Promise<UserCredential | undefined>;
+  signUp: (email: string, password: string) => Promise<unknown | undefined>;
   signIn: (
     email: string,
     password: string
@@ -42,46 +36,36 @@ export function useAuth(): AuthContextType {
 
 export function AuthProvider({ children }: AuthProviderProps) {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
-
-  const [createUserWithEmailAndPassword] =
+  const [createUserWithEmailAndPassword, loading, error] =
     useCreateUserWithEmailAndPassword(auth);
 
-  const [signInWithEmailAndPassword] = useSignInWithEmailAndPassword(auth);
-
-  // TODO validation and refactoring
-  async function signUp(
-    email: string,
-    password: string
-  ): Promise<UserCredential | undefined> {
+  async function signUp(email: string, password: string) {
     try {
+      //const user = await registerUser(email, password);
       const userCredential = await createUserWithEmailAndPassword(
         email,
         password
       );
-      console.log(userCredential);
-      return userCredential;
-    } catch (error: unknown) {
-      if (error instanceof Error) {
-        console.log(error.message);
+
+      if (!userCredential) {
+        throw new Error("User could not be registered.");
       }
+
+      const user = userCredential.user;
+      setCurrentUser(user);
+      console.log("User registered successfully:", user);
+    } catch (error: unknown) {
+      console.log(error.message);
+      throw new Error(error.message);
     }
   }
 
-  // TODO validation and refactoring
   async function signIn(
     email: string,
     password: string
   ): Promise<UserCredential | undefined> {
-    try {
-      console.log("User signed in successfully!");
-      const userCredential = await signInWithEmailAndPassword(email, password);
-      console.log(userCredential);
-      return userCredential;
-    } catch (error: unknown) {
-      if (error instanceof Error) {
-        console.log(error.message);
-      }
-    }
+    console.log(email, password);
+    return undefined;
   }
 
   useEffect(() => {

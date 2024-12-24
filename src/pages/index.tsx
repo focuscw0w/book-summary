@@ -1,5 +1,5 @@
 import Head from "next/head";
-import SearchWrapper from "../features/search/components/SearchWrapper/SearchOverlay";
+import SearchWrapper from "../features/search/components/SearchWrapper/SearchWrapper";
 import classes from "./page.module.css";
 import MainLayout from "./layout";
 import { ReactNode } from "react";

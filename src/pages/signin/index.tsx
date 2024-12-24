@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 import Head from "next/head";
 
 import { AuthProvider } from "@/features/auth/context/AuthProvider";
-import AuthLayout from "@/features/auth/components/layout/AuthLayout";
+import AuthLayout from "@/features/auth/layout/AuthLayout";
 import SignInForm from "@/features/auth/components/forms/SignInForm";
 
 export default function SignInPage() {

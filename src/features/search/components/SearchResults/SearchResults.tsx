@@ -16,7 +16,13 @@ export default function SearchResults({
   isLoading,
 }: SearchResultsProps) {
   if (isLoading) return <Spinner variant="Lines" color="#000000" />;
-  if (error instanceof Error) return <p>Error: {error.message}</p>;
+  if (error instanceof Error)
+    return (
+      <p>
+        Unfortunately, we could not find your desired book. Please, try again
+        later.
+      </p>
+    );
 
   if (!data) {
     return;

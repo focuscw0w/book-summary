@@ -9,7 +9,7 @@ interface BookResponse {
   items: Book[];
 }
 
-export default function fetchBook(query: string, maxResults: number = 10) {
+export default function fetchBooks(query: string, maxResults: number = 10) {
   return apiProvider.get<BookResponse>(
     `https://www.googleapis.com/books/v1/volumes?q=${query}&maxResults=${maxResults}`
   );

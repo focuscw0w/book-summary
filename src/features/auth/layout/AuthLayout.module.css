@@ -12,6 +12,7 @@
   box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
     rgba(0, 0, 0, 0.22) 0px 15px 12px;
   color: #ffffff;
+  width: 25rem;
 }
 
 .container form h2 {
@@ -24,4 +25,25 @@
   &:hover {
     text-decoration: underline;
   }
+}
+
+.wrapper {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.input {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border-radius: 5px;
+  font-size: 1rem;
+  border: none;
+  background-color: #f7efe7;
+}
+
+.error {
+  margin-top: .3rem;
+  color: #d93025;
 }

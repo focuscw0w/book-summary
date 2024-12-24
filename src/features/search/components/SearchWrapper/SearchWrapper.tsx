@@ -7,16 +7,16 @@ import SearchInput from "../SearchInput/SearchInput";
 import SearchResults from "../SearchResults/SearchResults";
 
 import useDebounce from "@/hooks/useDebounce";
-import fetchBook from "@/features/search/api/fetchBook";
-import classes from "./SearchOverlay.module.css";
+import fetchBooks from "@/features/search/api/fetchBooks";
+import classes from "./SearchWrapper.module.css";
 
-export default function SearchOverlay() {
+export default function SearchWrapper() {
   const [searchQuery, setSearchQuery] = useState("");
   const debouncedQuery = useDebounce(searchQuery, 500);
 
   const { data, error, isLoading } = useQuery({
     queryKey: ["books", debouncedQuery],
-    queryFn: () => fetchBook(debouncedQuery, 5),
+    queryFn: () => fetchBooks(debouncedQuery, 5),
     enabled: !!debouncedQuery,
   });
 

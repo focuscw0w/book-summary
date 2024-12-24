@@ -1,7 +1,10 @@
 import { Book } from "./Book";
 
 export interface User {
-    id: number,
-    name: string,
-    bookColection: Book[];
+  idToken: string;
+  email: string;
+  refreshToken: string;
+  expiresIn: string;
+  localId: string;
+  bookCollection?: Book[];
 }
