@@ -1,8 +1,6 @@
 import Head from "next/head";
-import SearchWrapper from "../features/search/components/SearchWrapper/SearchWrapper";
+import SearchWrapper from "../../features/search/components/SearchWrapper/SearchWrapper";
 import classes from "./page.module.css";
-import MainLayout from "./layout";
-import { ReactNode } from "react";
 
 export default function Home() {
   return (
@@ -19,8 +17,3 @@ export default function Home() {
     </div>
   );
 }
-
-// layout for home page when logged in
-Home.getLayout = function getLayout(page: ReactNode) {
-  return <MainLayout>{page}</MainLayout>;
-};

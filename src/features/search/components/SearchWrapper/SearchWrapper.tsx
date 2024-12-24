@@ -6,7 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import SearchInput from "../SearchInput/SearchInput";
 import SearchResults from "../SearchResults/SearchResults";
 
-import useDebounce from "@/hooks/useDebounce";
+import useDebounce from "@/features/search/hooks/useDebounce";
 import fetchBooks from "@/features/search/api/fetchBooks";
 import classes from "./SearchWrapper.module.css";
 

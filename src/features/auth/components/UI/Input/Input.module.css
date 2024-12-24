@@ -8,6 +8,16 @@
 .input {
   padding: 0.6rem 1rem;
   border-radius: 5px;
-  border: none;
+  border: 1px solid #c2c2c2;
   background-color: #f7efe7;
+  color: #333333;
+  transition: border-color 0.3s ease;
+
+  &:hover {
+    border: 1px solid #6a8caf;
+  }
+
+  &:focus {
+    border-color: #6a8caf;
+  }
 }
