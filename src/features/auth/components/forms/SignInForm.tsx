@@ -7,7 +7,7 @@ import Link from "next/link";
 import useInput from "../../hooks/useInput";
 import Input from "../UI/Input/Input";
 import Button from "../UI/Button/Button";
-import classes from "../layout/AuthLayout.module.css";
+//import classes from "@/features/auth/components/";
 
 export default function SignInForm() {
   const { signIn } = useAuth();
@@ -43,7 +43,7 @@ export default function SignInForm() {
         placeholder="Please, enter your password"
         {...passwordInput}
       />
-      <Button type="submit" variant="signIn" />
+      <Button type="submit" variant="signIn" isSubmitting={false} />
       <p>
         Need an account?{" "}
         <Link href="/signup" className={classes.link}>

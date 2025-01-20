@@ -1,4 +1,4 @@
-import { VolumeInfo } from "@/models/Book";
+import { VolumeInfo } from "@/features/search/models/Book";
 import classes from "./SearchItem.module.css";
 
 import Image from "next/image";

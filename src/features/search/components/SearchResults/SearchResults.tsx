@@ -1,5 +1,5 @@
 import classes from "./SearchResults.module.css";
-import { Book } from "@/models/Book";
+import { Book } from "@/features/search/models/Book";
 
 import SearchItem from "../SearchItem/SearchItem";
 import Spinner from "@/components/UI/Spinner/Spinner";

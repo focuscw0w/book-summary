@@ -7,7 +7,7 @@ import SearchInput from "../SearchInput/SearchInput";
 import SearchResults from "../SearchResults/SearchResults";
 
 import useDebounce from "@/features/search/hooks/useDebounce";
-import fetchBooks from "@/features/search/api/fetchBooks";
+import fetchBook from "@/features/search/api/fetchBook";
 import classes from "./SearchWrapper.module.css";
 
 export default function SearchWrapper() {
@@ -16,7 +16,7 @@ export default function SearchWrapper() {
 
   const { data, error, isLoading } = useQuery({
     queryKey: ["books", debouncedQuery],
-    queryFn: () => fetchBooks(debouncedQuery, 5),
+    queryFn: () => fetchBook(debouncedQuery, 1),
     enabled: !!debouncedQuery,
   });
 

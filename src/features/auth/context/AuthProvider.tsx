@@ -38,7 +38,7 @@ export function useAuth(): AuthContextType {
 
 export function AuthProvider({ children }: AuthProviderProps) {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
-  const [createUserWithEmailAndPassword, loading, error] =
+  const [createUserWithEmailAndPassword] =
     useCreateUserWithEmailAndPassword(auth);
 
   async function signUp(email: string, password: string) {
@@ -56,6 +56,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
       const user = userCredential.user;
       setCurrentUser(user);
       console.log("User registered successfully:", user);
+      return user;
     } catch (error: unknown) {
       console.log(error.message);
       throw new Error(error.message);
