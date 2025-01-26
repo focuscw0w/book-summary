@@ -7,7 +7,7 @@ import { useFormState } from "react-dom";
 import Button from "@/features/auth/components/UI/Button/Button";
 import classes from "../layout.module.css";
 
-import { createUser } from "@/features/auth/actions/auth";
+import { createUser } from "@/features/auth/actions/actions";
 
 export default function SignUpPage() {
   const [state, formAction, isPending] = useFormState(createUser, undefined);
