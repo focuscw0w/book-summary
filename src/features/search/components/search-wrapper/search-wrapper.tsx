@@ -3,12 +3,12 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 
-import SearchInput from "../SearchInput/SearchInput";
-import SearchResults from "../SearchResults/SearchResults";
+import SearchInput from "../search-input/search-input";
+import SearchResults from "../search-results/search-results";
 
 import useDebounce from "@/features/search/hooks/useDebounce";
 import fetchBook from "@/features/search/api/fetchBook";
-import classes from "./SearchWrapper.module.css";
+import classes from "./search-wrapper.module.css";
 
 export default function SearchWrapper() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -32,4 +32,4 @@ export default function SearchWrapper() {
       <SearchResults data={data} error={error} isLoading={isLoading} />
     </>
   );
-};
+}

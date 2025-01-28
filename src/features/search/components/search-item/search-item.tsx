@@ -1,5 +1,5 @@
 import { VolumeInfo } from "@/features/search/models/Book";
-import classes from "./SearchItem.module.css";
+import classes from "./search-item.module.css";
 
 import Image from "next/image";
 

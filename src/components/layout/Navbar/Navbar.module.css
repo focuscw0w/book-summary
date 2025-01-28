@@ -2,7 +2,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 1rem;
+  padding: 1rem 1.5rem;
+  background-color: var(--background-color-secondary);
+  border-radius: 8px;
+  color: #ffffff;
 }
 
 .heading {
@@ -12,17 +15,14 @@
 
 .nav ul {
   display: flex;
-  gap: 4rem;
-}
-
-.nav ul li {
-  cursor: pointer;
+  gap: 2rem;
 }
 
 .nav ul a {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  cursor: pointer;
 
   &:hover {
     color: var(--link-hover-color);
@@ -30,5 +30,9 @@
 
   &:hover path {
     fill: var(--link-hover-color);
+  }
+
+  & svg {
+    display: none;
   }
 }

@@ -1,5 +1,5 @@
 import Head from "next/head";
-import SearchWrapper from "../../features/search/components/SearchWrapper/SearchWrapper";
+import SearchWrapper from "../../features/search/components/search-wrapper/search-wrapper";
 import classes from "./page.module.css";
 
 export default function Home() {

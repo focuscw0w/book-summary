@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import TanStackProvider from "../../features/search/provider/TanstackProvider";
-import NavBar from "../../components/layout/Navbar/NavBar";
-import Footer from "../../components/layout/Footer/Footer";
+import NavBar from "../../components/layout/navbar/navbar";
+import Footer from "../../components/layout/footer/footer";
 
 interface MainLayoutProps {
   children: ReactNode;
@@ -13,7 +13,7 @@ export default function MainLayout({ children }: MainLayoutProps) {
       <div className="container">
         <NavBar />
         <main>{children}</main>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </TanStackProvider>
   );

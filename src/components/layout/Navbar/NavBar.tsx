@@ -1,5 +1,6 @@
 import Icon from "@/components/UI/Icon/Icon";
 import classes from "./Navbar.module.css";
+import AuthButton from "./auth-button";
 
 export default function Navbar() {
   return (
@@ -20,16 +21,18 @@ export default function Navbar() {
                 Books
               </a>
             </li>
-            <li>
+            {/*  <li>
               <a>
                 <Icon iconName="profile" />
                 My Profile
               </a>
+            </li> */}
+            <li>
+              <AuthButton />
             </li>
           </ul>
         </nav>
       </header>
     </>
   );
-};
-
+}

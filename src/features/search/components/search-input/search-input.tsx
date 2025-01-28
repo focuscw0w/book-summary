@@ -1,6 +1,6 @@
 "use client";
 
-import classes from "./SearchInput.module.css";
+import classes from "./search-input.module.css";
 import { Dispatch, SetStateAction } from "react";
 
 interface SearchInputProps {

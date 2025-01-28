@@ -4,7 +4,7 @@ import Head from "next/head";
 import Link from "next/link";
 import { useFormState } from "react-dom";
 
-import Button from "@/features/auth/components/UI/Button/Button";
+import Button from "@/features/auth/components/UI/button/button";
 import classes from "../layout.module.css";
 
 import { createUser } from "@/features/auth/actions/actions";

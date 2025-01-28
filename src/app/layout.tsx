@@ -1,14 +1,21 @@
-import "../globals.css"
+import "../globals.css";
 
-export default function DashboardLayout({
+import { getServerSession } from "next-auth";
+import SessionProvider from "@/features/auth/components/session-provider";
+
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const session = await getServerSession();
+
   return (
     <html lang="en">
       <body>
-        <main>{children}</main>
+        <SessionProvider session={session}>
+          <main>{children}</main>
+        </SessionProvider>
       </body>
     </html>
   );

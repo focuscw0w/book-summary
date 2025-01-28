@@ -5,8 +5,8 @@ import { FormEvent } from "react";
 
 import Link from "next/link";
 import useInput from "../../hooks/useInput";
-import Input from "../UI/Input/Input";
-import Button from "../UI/Button/Button";
+import Input from "../UI/input/input";
+import Button from "../UI/button/button";
 //import classes from "@/features/auth/components/";
 
 export default function SignInForm() {

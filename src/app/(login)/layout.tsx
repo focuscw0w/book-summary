@@ -1,4 +1,3 @@
-import { AuthProvider } from "@/features/auth/context/AuthProvider";
 import classes from "./layout.module.css";
 
 interface LayoutProps {
@@ -6,9 +5,5 @@ interface LayoutProps {
 }
 
 export default function Layout({ children }: LayoutProps) {
-  return (
-    <AuthProvider>
-      <div className={classes.container}>{children}</div>;
-    </AuthProvider>
-  );
+  return <div className={classes.container}>{children}</div>;
 }

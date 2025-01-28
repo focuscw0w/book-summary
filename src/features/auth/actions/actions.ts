@@ -35,11 +35,12 @@ export async function createUser(prevState: FormState, formData: FormData) {
     };
   }
 
-  //const hashedPassword = await bcrypt.hash(password, 10);
+  const hashedPassword = await bcrypt.hash(password, 10);
 
   await prisma.user.create({
     data: {
       email,
+      password: hashedPassword,
     },
   });
 
