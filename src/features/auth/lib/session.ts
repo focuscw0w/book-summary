@@ -38,6 +38,7 @@ export async function createSession(id: number) {
 
   const encryptedSession = await encrypt({
     sessionId: session.id,
+    userId: session.userId,
     expiresAt,
   });
 

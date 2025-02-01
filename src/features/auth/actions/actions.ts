@@ -5,7 +5,7 @@ import { redirect } from "next/navigation";
 import prisma from "@/lib/db";
 import bcrypt from "bcryptjs";
 import { FormState, createUserSchema } from "@/features/auth/lib/definitions";
-import { createSession } from "../lib/session";
+import { createSession, deleteSession } from "../lib/session";
 
 export async function createUser(prevState: FormState, formData: FormData) {
   const validatedFields = createUserSchema.safeParse({
@@ -48,4 +48,9 @@ export async function createUser(prevState: FormState, formData: FormData) {
   await createSession(user.id);
 
   redirect("/");
+}
+
+export async function logout() {
+  deleteSession();
+  redirect("/sign-in");
 }

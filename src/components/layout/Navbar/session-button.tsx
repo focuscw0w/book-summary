@@ -1,34 +1,20 @@
-"use client";
-
-import Link from "next/link";
-
 import classes from "./session-button.module.css";
+import { getUser } from "@/features/auth/lib/dal";
+import { logout } from "@/features/auth/actions/actions";
 
-export default function SessionButton() {
-  //const { data: session } = useSession();
-  const test = true;
+export default async function SessionButton() {
+  const user = await getUser();
 
-  if (test) {
-    return (
-      <>
-        {" "}
-        <Link
-          href="/sign-up"
-          className={classes.button}
-     
-        >
-          Sign out
-        </Link>
-      </>
-    );
-  } else {
-    return (
-      <>
-        Not signed in{" "}
-        <Link href="/sign-in" className={classes.button}>
-          Sign in
-        </Link>
-      </>
-    );
+  async function handleLogout() {
+    await logout();
   }
+
+  return (
+    <>
+      <button onClick={handleLogout} className={classes.button}>
+        Log out
+      </button>
+      <p>{user?.email}</p>
+    </>
+  );
 }
