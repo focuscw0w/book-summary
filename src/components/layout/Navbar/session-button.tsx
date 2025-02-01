@@ -2,20 +2,20 @@
 
 import Link from "next/link";
 
-import { signIn, signOut, useSession } from "next-auth/react";
-import classes from "./auth-button.module.css";
+import classes from "./session-button.module.css";
 
-export default function AuthButton() {
-  const { data: session } = useSession();
+export default function SessionButton() {
+  //const { data: session } = useSession();
+  const test = true;
 
-  if (session) {
+  if (test) {
     return (
       <>
-        {session.user?.name}{" "}
+        {" "}
         <Link
           href="/sign-up"
           className={classes.button}
-          onClick={() => signOut()}
+     
         >
           Sign out
         </Link>

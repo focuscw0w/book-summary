@@ -2,9 +2,10 @@ import classes from "./Button.module.css";
 
 interface ButtonProps {
   type: "submit" | "button";
-  variant: "signIn" | "signUp";
-  isSubmitting: boolean;
+  variant?: "signIn" | "signUp";
+  isSubmitting?: boolean;
   onClick?: () => void;
+  children?: React.ReactNode;
 }
 
 export default function Button({
@@ -12,8 +13,12 @@ export default function Button({
   variant,
   isSubmitting,
   onClick,
+  children,
 }: ButtonProps) {
-  const buttonText = variant === "signIn" ? "Sign In" : "Sign Up";
+  let buttonText = "";
+  if (variant) {
+    buttonText = variant === "signIn" ? "Sign In" : "Sign Up";
+  }
 
   return (
     <div className={classes.wrapper}>
@@ -24,6 +29,7 @@ export default function Button({
         onClick={onClick}
       >
         {buttonText}
+        {children}
       </button>
     </div>
   );

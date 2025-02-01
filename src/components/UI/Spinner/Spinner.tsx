@@ -1,5 +1,4 @@
 import { RotatingLines, Hourglass } from "react-loader-spinner";
-
 import classes from "./spinner.module.css";
 
 type SpinnerVariant = "Lines" | "Hourglass";

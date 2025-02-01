@@ -62,6 +62,13 @@ export default function SignUpPage() {
             Sign In
           </Link>
         </p>
+        <div className={classes.divider}>
+          <hr />
+          <p className={classes.dividerText}>Or</p>
+          <hr />
+        </div>
+        <Button type="button">Sign up with Google</Button>
+        <Button type="button">Sign up with Github</Button>
       </form>
     </>
   );

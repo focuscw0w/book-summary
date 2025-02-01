@@ -60,3 +60,20 @@
   margin-top: 0.3rem;
   color: #ee433d;
 }
+
+.divider {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin: 1rem 0;
+}
+
+.divider hr {
+  flex-grow: 1;
+  border: none;
+  border-top: 1px solid #ccc;
+}
+
+.dividerText {
+  margin: 0 10px;
+}

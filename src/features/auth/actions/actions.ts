@@ -5,6 +5,7 @@ import { redirect } from "next/navigation";
 import prisma from "@/lib/db";
 import bcrypt from "bcryptjs";
 import { FormState, createUserSchema } from "@/features/auth/lib/definitions";
+import { createSession } from "../lib/session";
 
 export async function createUser(prevState: FormState, formData: FormData) {
   const validatedFields = createUserSchema.safeParse({
@@ -37,12 +38,14 @@ export async function createUser(prevState: FormState, formData: FormData) {
 
   const hashedPassword = await bcrypt.hash(password, 10);
 
-  await prisma.user.create({
+  const user = await prisma.user.create({
     data: {
       email,
       password: hashedPassword,
     },
   });
+
+  await createSession(user.id);
 
   redirect("/");
 }

@@ -1,6 +1,6 @@
 import Icon from "@/components/UI/Icon/Icon";
 import classes from "./Navbar.module.css";
-import AuthButton from "./auth-button";
+import SessionButton from "./session-button";
 
 export default function Navbar() {
   return (
@@ -28,7 +28,7 @@ export default function Navbar() {
               </a>
             </li> */}
             <li>
-              <AuthButton />
+              <SessionButton />
             </li>
           </ul>
         </nav>
