@@ -58,17 +58,10 @@ export default function SignUpPage() {
         </div>
         <p>
           Already have an account?{" "}
-          <Link href="/signin" className={classes.link}>
+          <Link href="/sign-in" className={classes.link}>
             Sign In
           </Link>
         </p>
-        <div className={classes.divider}>
-          <hr />
-          <p className={classes.dividerText}>Or</p>
-          <hr />
-        </div>
-        <Button type="button">Sign up with Google</Button>
-        <Button type="button">Sign up with Github</Button>
       </form>
     </>
   );

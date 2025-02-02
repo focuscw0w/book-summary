@@ -1,38 +1,28 @@
-import Icon from "@/components/UI/Icon/Icon";
 import classes from "./Navbar.module.css";
-import SessionButton from "./session-button";
+import { getUser } from "@/features/auth/lib/dal";
 
-export default function Navbar() {
+import LogoutButton from "./logout-button";
+
+export default async function Navbar() {
+  const user = await getUser();
+
   return (
-    <>
-      <header className={classes.header}>
-        <h2 className={classes.heading}>Book Summary</h2>
-        <nav className={classes.nav}>
-          <ul>
-            <li>
-              <a>
-                <Icon iconName="home" />
-                Home
-              </a>
-            </li>
-            <li>
-              <a>
-                <Icon iconName="books" />
-                Books
-              </a>
-            </li>
-            {/*  <li>
-              <a>
-                <Icon iconName="profile" />
-                My Profile
-              </a>
-            </li> */}
-            <li>
-              <SessionButton />
-            </li>
-          </ul>
-        </nav>
-      </header>
-    </>
+    <header className={classes.header}>
+      <h2 className={classes.heading}>Book Summary</h2>
+      <nav className={classes.nav}>
+        <ul>
+          <li>
+            <a>Home</a>
+          </li>
+          <li>
+            <a>Books</a>
+          </li>
+          <li>
+            <LogoutButton />
+            <p>{user?.email}</p>
+          </li>
+        </ul>
+      </nav>
+    </header>
   );
 }
