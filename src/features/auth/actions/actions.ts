@@ -2,38 +2,31 @@
 
 import { redirect } from "next/navigation";
 
-import prisma from "@/lib/db";
-import bcrypt from "bcryptjs";
 import {
+  validateCredentials,
+  findUserInDatabase,
+  createUserInDatabase,
+  hashPassword,
+  comparePasswords,
+  createSession,
+  deleteSession,
   FormState,
   createUserSchema,
   loginSchema,
-} from "@/features/auth/lib/definitions";
-import { createSession, deleteSession, updateSession } from "../lib/session";
-import { comparePasswords } from "../lib/helper";
+} from "@/features/auth/lib/auth";
 
 export async function createUser(prevState: FormState, formData: FormData) {
-  const validatedFields = createUserSchema.safeParse({
-    email: formData.get("email"),
-    password: formData.get("password"),
-    confirmPassword: formData.get("confirmPassword"),
-  });
+  const validatedFields = validateCredentials(createUserSchema, formData);
 
-  if (!validatedFields.success) {
-    return {
-      errors: validatedFields.error.flatten().fieldErrors,
-    };
+  if ("errors" in validatedFields) {
+    return validatedFields;
   }
 
   const { email, password } = validatedFields.data;
 
-  const userExists = await prisma.user.findUnique({
-    where: {
-      email,
-    },
-  });
+  const foundUser = await findUserInDatabase(email);
 
-  if (userExists) {
+  if (foundUser) {
     return {
       errors: {
         email: ["User with this email already exists."],
@@ -41,14 +34,9 @@ export async function createUser(prevState: FormState, formData: FormData) {
     };
   }
 
-  const hashedPassword = await bcrypt.hash(password, 10);
+  const hashedPassword = await hashPassword(password);
 
-  const user = await prisma.user.create({
-    data: {
-      email,
-      password: hashedPassword,
-    },
-  });
+  const user = await createUserInDatabase(email, hashedPassword);
 
   await createSession(user.id);
 
@@ -56,24 +44,17 @@ export async function createUser(prevState: FormState, formData: FormData) {
 }
 
 export async function loginUser(prevState: FormState, formData: FormData) {
-  const validatedFields = loginSchema.safeParse({
-    email: formData.get("email"),
-    password: formData.get("password"),
-  });
+  const validatedFields = validateCredentials(loginSchema, formData);
 
-  if (!validatedFields.success) {
-    return {
-      errors: validatedFields.error.flatten().fieldErrors,
-    };
+  if ("errors" in validatedFields) {
+    return validatedFields;
   }
 
   const { email, password } = validatedFields.data;
 
-  const existingUser = await prisma.user.findUnique({
-    where: { email },
-  });
+  const foundUser = await findUserInDatabase(email);
 
-  if (!existingUser) {
+  if (!foundUser) {
     return {
       errors: {
         email: ["User with this email does not exist."],
@@ -81,10 +62,7 @@ export async function loginUser(prevState: FormState, formData: FormData) {
     };
   }
 
-  const isPasswordValid = await comparePasswords(
-    password,
-    existingUser.password
-  );
+  const isPasswordValid = await comparePasswords(password, foundUser.password);
 
   if (!isPasswordValid) {
     return {
@@ -94,16 +72,7 @@ export async function loginUser(prevState: FormState, formData: FormData) {
     };
   }
 
-  const existingSession = await prisma.session.findFirst({
-    where: { userId: existingUser.id },
-  });
-
-  // maybe only create a new session
-  if (existingSession) {
-    await updateSession(existingSession.id);
-  } else {
-    await createSession(existingUser.id);
-  }
+  await createSession(foundUser.id);
 
   redirect("/");
 }

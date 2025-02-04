@@ -10,5 +10,3 @@ export async function comparePasswords(
 export async function hashPassword(password: string) {
   return bcrypt.hash(password, 10);
 }
-
-export function validateCredentials() {}

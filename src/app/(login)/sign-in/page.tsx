@@ -13,8 +13,6 @@ export default function SignInPage() {
   const [state, formAction, isPending] = useFormState(loginUser, undefined);
   const errors = state?.errors;
 
-  console.log(errors);
-
   return (
     <>
       <Head>
@@ -30,6 +28,9 @@ export default function SignInPage() {
               placeholder="Please, enter your email"
               className={classes.input}
             />
+            {errors?.email && (
+              <p className={classes.error}>{errors.email[0]}</p>
+            )}
           </div>
           <div>
             <input
@@ -38,6 +39,9 @@ export default function SignInPage() {
               placeholder="Please, enter your password"
               className={classes.input}
             />
+            {errors?.password && (
+              <p className={classes.error}>{errors.password[0]}</p>
+            )}
           </div>
           <Button isSubmitting={isPending} type="submit" variant="signIn" />
         </div>

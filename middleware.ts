@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { decrypt } from "@/features/auth/lib/session";
+import { decrypt } from "@/features/auth/lib/auth/session";
 import { cookies } from "next/headers";
 
 const protectedRoutes = ["/"];
@@ -12,6 +12,8 @@ export default async function middleware(request: NextRequest) {
 
   const cookie = cookies().get("session")?.value;
   const session = await decrypt(cookie);
+
+  // check if session expired
 
   if (isProtectedRoute && !session?.userId) {
     return NextResponse.redirect(new URL("/sign-in", request.nextUrl));

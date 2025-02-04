@@ -2,7 +2,7 @@
 "server only";
 
 import { redirect } from "next/navigation";
-import { decrypt } from "./session";
+import { decrypt } from "./auth/session";
 import { cookies } from "next/headers";
 import { cache } from "react";
 import prisma from "@/lib/db";

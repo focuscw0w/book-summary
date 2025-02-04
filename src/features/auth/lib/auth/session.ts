@@ -103,3 +103,9 @@ export async function updateSession(sessionId: string) {
     path: "/",
   });
 }
+
+export async function findSessionInDatabase(userId: number) {
+  return await prisma.session.findFirst({
+    where: { userId },
+  });
+}

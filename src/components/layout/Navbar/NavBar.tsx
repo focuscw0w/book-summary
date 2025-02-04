@@ -1,4 +1,4 @@
-import classes from "./Navbar.module.css";
+import classes from "./navbar.module.css";
 import { getUser } from "@/features/auth/lib/dal";
 
 import LogoutButton from "./logout-button";
@@ -18,8 +18,10 @@ export default async function Navbar() {
             <a>Books</a>
           </li>
           <li>
+            <p className={classes.user}>{user?.email}</p>
+          </li>
+          <li>
             <LogoutButton />
-            <p>{user?.email}</p>
           </li>
         </ul>
       </nav>

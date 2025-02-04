@@ -20,7 +20,7 @@
 }
 
 .link {
-  color: var(--button-color);
+  color: var(--highlight-color);
 
   &:hover {
     text-decoration: underline;

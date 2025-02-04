@@ -1,8 +1,0 @@
-.button {
-  color: var(--button-color);
-
-  &:hover {
-    color: var(--button-color) !important;
-    text-decoration: underline;
-  }
-}
