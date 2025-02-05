@@ -72,6 +72,7 @@ export async function deleteSession() {
   cookieStore.delete("session");
 }
 
+// TODO: Use this function in another functions
 export async function getSession() {
   const session = cookies().get("session")?.value;
 

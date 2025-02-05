@@ -18,9 +18,9 @@ export default function SearchResults({
   if (isLoading) return <Spinner variant="Lines" color="#000000" />;
   if (error instanceof Error)
     return (
-      <p>
+      <p className={classes.error}>
         Unfortunately, we could not find your desired book. Please, try again
-        later.
+        later. {error.message}
       </p>
     );
 

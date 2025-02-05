@@ -2,7 +2,7 @@
 
 import { logout } from "@/features/auth/actions/actions";
 
-import Button from "@/features/auth/components/UI/button/button";
+import Button from "@/components/UI/button/button";
 
 export default function LogoutButton() {
   async function handleLogout() {
@@ -12,7 +12,7 @@ export default function LogoutButton() {
   return (
     <>
       <Button onClick={handleLogout} type="button">
-        Log out
+        Log Out
       </Button>
     </>
   );

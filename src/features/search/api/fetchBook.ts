@@ -1,7 +1,4 @@
-import ApiProvider from "../../../provider/ApiProvider";
 import { Book } from "../models/Book";
-
-const apiProvider = new ApiProvider();
 
 interface BookResponse {
   kind: string;
@@ -9,23 +6,24 @@ interface BookResponse {
   items: Book[];
 }
 
-export default function fetchBook(query: string, maxResults: number = 10) {
-  return apiProvider.get<BookResponse>(
-    `https://www.googleapis.com/books/v1/volumes?q=${query}&maxResults=${maxResults}`
-  );
-}
+const API_KEY = process.env.NEXT_PUBLIC_GOOGLE_API_KEY;
 
-/* export default async function fetchBook(query: string) {
-  const response = await fetch(
-    `https://www.googleapis.com/books/v1/volumes?q=${query}`
-  );
+export default async function fetchBook(
+  query: string,
+  maxResults: number = 10
+) {
+  try {
+    const response = await fetch(
+      `https://www.googleapis.com/books/v1/volumes?q=${query}&maxResults=${maxResults}&key=${API_KEY}`
+    );
 
-  if (!response.ok) {
-    throw new Error("Failed to fetch book");
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+
+    const data: BookResponse = await response.json();
+    return data;
+  } catch (error: unknown) {
+    throw new Error("An error occurred while fetching the book");
   }
-
-  const data = await response.json();
-
-  return data;
 }
- */

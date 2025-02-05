@@ -1,3 +1,7 @@
 .container {
   margin-top: 2rem;
 }
+
+.error {
+  text-align: center;
+}

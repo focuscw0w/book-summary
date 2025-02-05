@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { decrypt } from "@/features/auth/lib/auth/session";
-import { cookies } from "next/headers";
+import { deleteSession, getSession } from "@/features/auth/lib/auth/session";
 
 const protectedRoutes = ["/"];
 const publicRoutes = ["sign-in", "sign-up"];
@@ -10,10 +9,16 @@ export default async function middleware(request: NextRequest) {
   const isProtectedRoute = protectedRoutes.includes(path);
   const isPublicRoute = publicRoutes.includes(path);
 
-  const cookie = cookies().get("session")?.value;
-  const session = await decrypt(cookie);
+  const session = await getSession();
 
-  // check if session expired
+  const sessionExpired =
+    session?.expiresAt &&
+    new Date(session.expiresAt.toString()).getTime() < Date.now();
+
+  if (sessionExpired) {
+    await deleteSession();
+    return NextResponse.redirect(new URL("/sign-in", request.nextUrl));
+  }
 
   if (isProtectedRoute && !session?.userId) {
     return NextResponse.redirect(new URL("/sign-in", request.nextUrl));

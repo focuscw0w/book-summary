@@ -5,12 +5,12 @@ import Link from "next/link";
 import { useFormState } from "react-dom";
 
 import classes from "../layout.module.css";
-import Button from "@/features/auth/components/UI/button/button";
 
 import { loginUser } from "@/features/auth/actions/actions";
+import SubmitButton from "@/features/auth/components/submit-button";
 
 export default function SignInPage() {
-  const [state, formAction, isPending] = useFormState(loginUser, undefined);
+  const [state, formAction] = useFormState(loginUser, undefined);
   const errors = state?.errors;
 
   return (
@@ -43,7 +43,7 @@ export default function SignInPage() {
               <p className={classes.error}>{errors.password[0]}</p>
             )}
           </div>
-          <Button isSubmitting={isPending} type="submit" variant="signIn" />
+          <SubmitButton>Sign In</SubmitButton>
         </div>
         <p>
           Don&apos;t have an account?{" "}

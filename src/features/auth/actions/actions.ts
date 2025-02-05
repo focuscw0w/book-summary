@@ -10,9 +10,9 @@ import {
   comparePasswords,
   createSession,
   deleteSession,
-  FormState,
   createUserSchema,
   loginSchema,
+  FormState,
 } from "@/features/auth/lib/auth";
 
 export async function createUser(prevState: FormState, formData: FormData) {

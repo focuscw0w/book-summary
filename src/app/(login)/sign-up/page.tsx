@@ -4,13 +4,13 @@ import Head from "next/head";
 import Link from "next/link";
 import { useFormState } from "react-dom";
 
-import Button from "@/features/auth/components/UI/button/button";
 import classes from "../layout.module.css";
 
 import { createUser } from "@/features/auth/actions/actions";
+import SubmitButton from "@/features/auth/components/submit-button";
 
 export default function SignUpPage() {
-  const [state, formAction, isPending] = useFormState(createUser, undefined);
+  const [state, formAction] = useFormState(createUser, undefined);
   const errors = state?.errors;
 
   return (
@@ -54,7 +54,7 @@ export default function SignUpPage() {
               <p className={classes.error}>{errors.confirmPassword[0]}</p>
             )}
           </div>
-          <Button isSubmitting={isPending} type="submit" variant="signUp" />
+          <SubmitButton>Sign Up</SubmitButton>
         </div>
         <p>
           Already have an account?{" "}
