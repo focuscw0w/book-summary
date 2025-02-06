@@ -10,7 +10,6 @@
   --background-color-main: #f2dfce;
   --background-color-secondary: #2e2e2e;
   --highlight-color: #6a8caf;
-  --link-hover-color: #c3b5a6;
 }
 
 body {
@@ -35,6 +34,12 @@ a {
   display: flex;
   justify-content: space-between;
   flex-direction: column;
+}
+
+@media screen and (max-width: 680px) {
+  .container {
+    padding: 0 1rem 1rem 1rem;
+  }
 }
 
 .container main {

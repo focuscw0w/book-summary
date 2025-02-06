@@ -1,8 +1,14 @@
 .quote {
-    padding: 2rem 10rem;
-    margin-top: 5rem;
-    
-    font-size: 2rem;
-    font-style: italic;
-    text-align: center;
+  padding: 2rem 10rem;
+  margin-top: 5rem;
+
+  font-size: 2rem;
+  font-style: italic;
+  text-align: center;
+}
+
+@media screen and (max-width: 680px) {
+  .quote {
+    padding: 2rem 1rem;
+  }
 }
