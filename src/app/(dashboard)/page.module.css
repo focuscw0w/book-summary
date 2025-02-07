@@ -8,7 +8,17 @@
 
 @media screen and (max-width: 680px) {
   .heading {
-    font-size: 2.5rem;
+    font-size: 2rem;
     text-transform: none;
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .heading strong {
+    display: block;
+  }
+
+  .heading br {
+    display: none;
   }
 }

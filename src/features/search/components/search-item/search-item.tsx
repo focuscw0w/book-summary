@@ -1,15 +1,36 @@
-import { VolumeInfo } from "@/features/search/models/Book";
-import classes from "./search-item.module.css";
-
 import Image from "next/image";
+
+import { VolumeInfo } from "@/features/search/models/Book";
+import { motion } from "framer-motion";
+
+import classes from "./search-item.module.css";
 
 interface SearchItemProps {
   bookInfo: VolumeInfo;
 }
 
 export default function SearchItem({ bookInfo }: SearchItemProps) {
+  const maxAuthors = 2;
+  const maxDescriptionLength = 150;
+
+  const authors = bookInfo.authors?.length
+    ? bookInfo.authors.length > maxAuthors
+      ? `${bookInfo.authors.slice(0, maxAuthors).join(", ")}...`
+      : bookInfo.authors.join(", ")
+    : "N/A";
+
+  const description =
+    bookInfo.description && bookInfo.description.length > maxDescriptionLength
+      ? `${bookInfo.description.slice(0, maxDescriptionLength)}...`
+      : bookInfo.description || "No description available.";
+
   return (
-    <li className={classes.item}>
+    <motion.li
+      className={classes.item}
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ ease: "easeIn" }}
+    >
       <div className={classes.thumbnail}>
         {bookInfo.imageLinks?.thumbnail ? (
           <Image
@@ -25,7 +46,7 @@ export default function SearchItem({ bookInfo }: SearchItemProps) {
       <div className={classes.about}>
         <h4 className={classes.title}>{bookInfo.title}</h4>
 
-        <p>Authors: {bookInfo.authors?.join(", ") || "N/A"}</p>
+        <p>Authors: {authors}</p>
 
         {bookInfo.publishedDate && (
           <p className={classes.publishedDate}>
@@ -34,13 +55,9 @@ export default function SearchItem({ bookInfo }: SearchItemProps) {
         )}
 
         {bookInfo.description && (
-          <p className={classes.description}>
-            {bookInfo.description.length > 150
-              ? `${bookInfo.description.slice(0, 400)}...`
-              : bookInfo.description}
-          </p>
+          <p className={classes.description}>{description}</p>
         )}
       </div>
-    </li>
+    </motion.li>
   );
 }

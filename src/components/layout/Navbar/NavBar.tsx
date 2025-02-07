@@ -11,30 +11,26 @@ export default async function Navbar() {
     <header className={classes.header}>
       <h2 className={classes.heading}>Book Summary</h2>
       <nav className={classes.nav}>
-        <ul>
+        <ul className={classes.menu}>
           <li>
             <a>Home</a>
           </li>
           <li>
-            <a>Books</a>
+            <a>My Books</a>
           </li>
-          <li className={classes.user}>
+          <li className={classes.session}>
             <p>{user?.email}</p>
           </li>
-          <li className={classes.user}>
+          <li className={classes.session}>
             <LogoutButton />
           </li>
-          <li className={classes.dropdown}>
-            <Dropdown>
-              <li>
-                <p>{user?.email}</p>
-              </li>
-              <li>
-                <LogoutButton />
-              </li>
-            </Dropdown>
-          </li>
         </ul>
+        <div className={classes.dropdown}>
+          <Dropdown>
+            <p>{user?.email}</p>
+            <LogoutButton />
+          </Dropdown>
+        </div>
       </nav>
     </header>
   );

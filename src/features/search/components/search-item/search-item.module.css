@@ -1,10 +1,12 @@
 .item {
   display: flex;
   align-items: center;
+  max-width: 600px;
+  margin: 1.5rem auto;
 
   gap: 2rem;
   padding: 1rem 1.5rem;
-  margin: 1.5rem 0;
+  
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   border-radius: 8px;
   cursor: pointer;
@@ -32,4 +34,10 @@
 
 .description {
     font-style: italic;
+}
+
+@media screen and (max-width: 480px) {
+  .description {
+    display: none;
+  }
 }

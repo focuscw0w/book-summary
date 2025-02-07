@@ -3,6 +3,8 @@
 import { useState } from "react";
 
 import { motion, AnimatePresence } from "framer-motion";
+import { FiMenu, FiX } from "react-icons/fi";
+
 import classes from "./drop-down.module.css";
 
 interface DropdownProps {
@@ -18,7 +20,7 @@ export default function Dropdown({ children }: DropdownProps) {
         className={classes.toggle}
         onClick={() => setIsOpen((prev) => !prev)}
       >
-        ☰
+        {isOpen ? <FiX size={24} /> : <FiMenu size={24} />}
       </button>
 
       <AnimatePresence>

@@ -13,13 +13,13 @@
   font-weight: bold;
 }
 
-.nav ul {
+.menu {
   display: flex;
   align-items: center;
   gap: 2rem;
 }
 
-.nav ul a {
+.menu a {
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -34,7 +34,7 @@
   margin-bottom: 0;
 }
 
-.user {
+.nav p {
   color: var(--highlight-color);
 }
 
@@ -54,16 +54,27 @@
     display: none;
   }
 
-  .dropdown {
-    display: block;
-  }
-
   .nav {
     width: 100%;
-    font-size: 1.3rem;
   }
 
-  .nav ul {
+  .nav .menu {
     justify-content: space-between;
+  }
+}
+
+@media screen and (max-width: 485px) {
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .session {
+    display: none;
+  }
+
+  .dropdown {
+    display: block;
   }
 }
