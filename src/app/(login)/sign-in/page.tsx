@@ -44,6 +44,9 @@ export default function SignInPage() {
             )}
           </div>
           <SubmitButton>Sign In</SubmitButton>
+          {errors?.message && (
+            <p className={classes.error}>{errors.message[0]}</p>
+          )}
         </div>
         <p>
           Don&apos;t have an account?{" "}

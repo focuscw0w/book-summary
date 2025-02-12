@@ -26,6 +26,13 @@ export async function decrypt(session: string | undefined = "") {
   }
 }
 
+export async function getSession() {
+  const session = cookies().get("session")?.value;
+
+  if (!session) return null;
+  return await decrypt(session);
+}
+
 export async function createSession(id: number) {
   const expiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
 
@@ -56,28 +63,16 @@ export async function createSession(id: number) {
 }
 
 export async function deleteSession() {
-  const cookieStore = cookies();
-  const sessionCookie = cookieStore.get("session")?.value;
+  const session = await getSession();
 
-  if (!sessionCookie) return;
-
-  const decryptedSessionCookie = await decrypt(sessionCookie);
-
-  if (!decryptedSessionCookie?.sessionId) return;
+  if (!session?.sessionId) return;
 
   await prisma.session.delete({
-    where: { id: decryptedSessionCookie?.sessionId.toString() },
+    where: { id: session?.sessionId.toString() },
   });
 
+  const cookieStore = cookies();
   cookieStore.delete("session");
-}
-
-// TODO: Use this function in another functions
-export async function getSession() {
-  const session = cookies().get("session")?.value;
-
-  if (!session) return null;
-  return await decrypt(session);
 }
 
 export async function updateSession(sessionId: string) {

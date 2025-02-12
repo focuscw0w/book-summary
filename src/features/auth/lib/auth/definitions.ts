@@ -17,8 +17,8 @@ export type FormState =
         email?: string[];
         password?: string[];
         confirmPassword?: string[];
+        message?: string[];
       };
-      message?: string;
     }
   | undefined;
 

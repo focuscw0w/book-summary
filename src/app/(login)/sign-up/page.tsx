@@ -55,6 +55,9 @@ export default function SignUpPage() {
             )}
           </div>
           <SubmitButton>Sign Up</SubmitButton>
+          {errors?.message && (
+            <p className={classes.error}>{errors.message[0]}</p>
+          )}
         </div>
         <p>
           Already have an account?{" "}

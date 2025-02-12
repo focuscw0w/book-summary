@@ -13,6 +13,7 @@ import {
   createUserSchema,
   loginSchema,
   FormState,
+  formatErrors,
 } from "@/features/auth/lib/auth";
 
 export async function createUser(prevState: FormState, formData: FormData) {
@@ -24,7 +25,12 @@ export async function createUser(prevState: FormState, formData: FormData) {
 
   const { email, password } = validatedFields.data;
 
-  const foundUser = await findUserInDatabase(email);
+  let foundUser;
+  try {
+    foundUser = await findUserInDatabase(email);
+  } catch (error: unknown) {
+    return formatErrors(`Error finding user. ${error}`, createUserSchema);
+  }
 
   if (foundUser) {
     return {
@@ -36,9 +42,18 @@ export async function createUser(prevState: FormState, formData: FormData) {
 
   const hashedPassword = await hashPassword(password);
 
-  const user = await createUserInDatabase(email, hashedPassword);
+  let user;
+  try {
+    user = await createUserInDatabase(email, hashedPassword);
+  } catch (error: unknown) {
+    return formatErrors(`Error creating user. ${error}`, createUserSchema);
+  }
 
-  await createSession(user.id);
+  try {
+    await createSession(user.id);
+  } catch (error: unknown) {
+    return formatErrors(`Error creating session. ${error}`, createUserSchema);
+  }
 
   redirect("/");
 }
@@ -52,7 +67,12 @@ export async function loginUser(prevState: FormState, formData: FormData) {
 
   const { email, password } = validatedFields.data;
 
-  const foundUser = await findUserInDatabase(email);
+  let foundUser;
+  try {
+    foundUser = await findUserInDatabase(email);
+  } catch (error: unknown) {
+    return formatErrors(`Error finding user. ${error}`, loginSchema);
+  }
 
   if (!foundUser) {
     return {
@@ -72,7 +92,11 @@ export async function loginUser(prevState: FormState, formData: FormData) {
     };
   }
 
-  await createSession(foundUser.id);
+  try {
+    await createSession(foundUser.id);
+  } catch (error: unknown) {
+    return formatErrors(`Error creating session. ${error}`, loginSchema);
+  }
 
   redirect("/");
 }

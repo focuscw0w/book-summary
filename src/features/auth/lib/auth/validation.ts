@@ -8,7 +8,10 @@ export function validateCredentials<T>(
 
   if (!validatedFields.success) {
     return {
-      errors: validatedFields.error.flatten().fieldErrors,
+      errors: {
+        ...validatedFields.error.flatten().fieldErrors,
+        message: undefined,
+      },
     };
   }
 
