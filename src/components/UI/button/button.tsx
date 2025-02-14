@@ -4,7 +4,7 @@ interface ButtonProps {
   type: "submit" | "button";
   isSubmitting?: boolean;
   onClick?: () => void;
-  children?: React.ReactNode;
+  children: React.ReactNode;
 }
 
 export default function Button({

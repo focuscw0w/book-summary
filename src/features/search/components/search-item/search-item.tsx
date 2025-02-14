@@ -4,32 +4,34 @@ import { VolumeInfo } from "@/features/search/models/Book";
 import { motion } from "framer-motion";
 
 import classes from "./search-item.module.css";
+import { truncateDescription, formatAuthors } from "../../lib/text";
+import { scaleFadeVariants } from "../../lib/animation";
 
 interface SearchItemProps {
+  onClick: () => void;
   bookInfo: VolumeInfo;
 }
 
-export default function SearchItem({ bookInfo }: SearchItemProps) {
-  const maxAuthors = 2;
-  const maxDescriptionLength = 150;
+const maxDescriptionLength = 150;
+const maxAuthors = 2;
 
-  const authors = bookInfo.authors?.length
-    ? bookInfo.authors.length > maxAuthors
-      ? `${bookInfo.authors.slice(0, maxAuthors).join(", ")}...`
-      : bookInfo.authors.join(", ")
-    : "N/A";
+export default function SearchItem({ bookInfo, onClick }: SearchItemProps) {
+  const authors = formatAuthors(bookInfo.authors, maxAuthors);
 
-  const description =
-    bookInfo.description && bookInfo.description.length > maxDescriptionLength
-      ? `${bookInfo.description.slice(0, maxDescriptionLength)}...`
-      : bookInfo.description || "No description available.";
+  const description = truncateDescription(
+    bookInfo.description,
+    maxDescriptionLength
+  );
 
   return (
     <motion.li
       className={classes.item}
-      initial={{ opacity: 0, scale: 0.9 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ ease: "easeIn" }}
+      variants={scaleFadeVariants}
+      initial="hidden"
+      animate="visible"
+      exit="exit"
+      transition={{ duration: 0.3 }}
+      onClick={onClick}
     >
       <div className={classes.thumbnail}>
         {bookInfo.imageLinks?.thumbnail ? (
@@ -54,9 +56,7 @@ export default function SearchItem({ bookInfo }: SearchItemProps) {
           </p>
         )}
 
-        {bookInfo.description && (
-          <p className={classes.description}>{description}</p>
-        )}
+        <p className={classes.description}>{description}</p>
       </div>
     </motion.li>
   );

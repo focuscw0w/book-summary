@@ -1,0 +1,15 @@
+.wrapper {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.title {
+  margin-bottom: 0.5rem;
+}
+
+.image {
+  width: 35rem;
+  position: relative;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}

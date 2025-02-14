@@ -1,8 +1,14 @@
+"use client";
+
+import { useState } from "react";
+import { Book, VolumeInfo } from "@/features/search/models/Book";
+
 import classes from "./search-results.module.css";
-import { Book } from "@/features/search/models/Book";
 
 import SearchItem from "../search-item/search-item";
 import Spinner from "@/components/UI/spinner/spinner";
+import Modal from "../modal/modal";
+import ModalDetails from "../modal/modal-details";
 
 interface SearchResultsProps {
   data: { items: Book[] } | undefined;
@@ -15,6 +21,19 @@ export default function SearchResults({
   error,
   isLoading,
 }: SearchResultsProps) {
+  const [selectedBook, setSelectedBook] = useState<VolumeInfo | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  function openModal(book: VolumeInfo) {
+    setIsModalOpen(true);
+    setSelectedBook(book);
+  }
+
+  function closeModal() {
+    setIsModalOpen(false);
+    setSelectedBook(null);
+  }
+
   if (isLoading) return <Spinner variant="Lines" color="#000000" />;
   if (error instanceof Error)
     return (
@@ -25,16 +44,25 @@ export default function SearchResults({
     );
 
   if (!data) {
-    return;
+    return null;
   }
 
   return (
-    <div className={classes.container}>
-      <ul>
-        {data.items.map((book: Book) => (
-          <SearchItem bookInfo={book.volumeInfo} key={book.id} />
-        ))}
-      </ul>
-    </div>
+    <>
+      <div className={classes.container}>
+        <ul>
+          {data.items.map((book: Book) => (
+            <SearchItem
+              onClick={() => openModal(book.volumeInfo)}
+              bookInfo={book.volumeInfo}
+              key={book.id}
+            />
+          ))}
+        </ul>
+      </div>
+      <Modal isOpen={isModalOpen} onClose={closeModal}>
+        {selectedBook && <ModalDetails bookInfo={selectedBook} />}
+      </Modal>
+    </>
   );
 }
