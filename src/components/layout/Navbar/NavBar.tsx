@@ -1,8 +1,9 @@
-import classes from "./navbar.module.css";
 import { getUser } from "@/features/auth/lib/dal";
+import classes from "./navbar.module.css";
 
 import LogoutButton from "./logout-button";
 import Dropdown from "./drop-down";
+import NavLink from "./nav-link";
 
 export default async function Navbar() {
   const user = await getUser();
@@ -12,12 +13,8 @@ export default async function Navbar() {
       <h2 className={classes.heading}>Book Summary</h2>
       <nav className={classes.nav}>
         <ul className={classes.menu}>
-          <li>
-            <a>Home</a>
-          </li>
-          <li>
-            <a>My Books</a>
-          </li>
+          <NavLink href="/">Home</NavLink>
+          <NavLink href="/my-books">My Books</NavLink>
           <li className={classes.session}>
             <p>{user?.email}</p>
           </li>

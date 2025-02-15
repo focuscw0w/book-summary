@@ -5,6 +5,7 @@ import ReactDOM from "react-dom";
 
 import { motion } from "framer-motion";
 import { scaleFadeVariants } from "../../lib/animation";
+import { MdClose } from "react-icons/md";
 import classes from "./modal.module.css";
 
 interface ModalProps {
@@ -43,7 +44,7 @@ export default function Modal({ isOpen, onClose, children }: ModalProps) {
         transition={{ duration: 0.3 }}
       >
         <button className={classes.closeButton} onClick={onClose}>
-          &times;
+          <MdClose size={24} />
         </button>
         {children}
       </motion.div>

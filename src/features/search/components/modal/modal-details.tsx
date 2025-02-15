@@ -2,7 +2,6 @@ import Image from "next/image";
 
 import { VolumeInfo } from "../../models/Book";
 import { truncateDescription } from "../../lib/text";
-
 import classes from "./modal-details.module.css";
 import Button from "@/components/UI/button/button";
 

@@ -4,7 +4,6 @@ import { useState } from "react";
 
 import { motion, AnimatePresence } from "framer-motion";
 import { FiMenu, FiX } from "react-icons/fi";
-
 import classes from "./drop-down.module.css";
 
 interface DropdownProps {

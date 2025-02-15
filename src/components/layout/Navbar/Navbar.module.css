@@ -19,23 +19,8 @@
   gap: 2rem;
 }
 
-.menu a {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  cursor: pointer;
-
-  &:hover {
-    color: var(--highlight-color);
-  }
-}
-
 .nav button {
   margin-bottom: 0;
-}
-
-.nav p {
-  color: var(--highlight-color);
 }
 
 .dropdown {

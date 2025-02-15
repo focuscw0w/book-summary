@@ -2,10 +2,9 @@ import Image from "next/image";
 
 import { VolumeInfo } from "@/features/search/models/Book";
 import { motion } from "framer-motion";
-
-import classes from "./search-item.module.css";
 import { truncateDescription, formatAuthors } from "../../lib/text";
 import { scaleFadeVariants } from "../../lib/animation";
+import classes from "./search-item.module.css";
 
 interface SearchItemProps {
   onClick: () => void;
@@ -30,7 +29,8 @@ export default function SearchItem({ bookInfo, onClick }: SearchItemProps) {
       initial="hidden"
       animate="visible"
       exit="exit"
-      transition={{ duration: 0.3 }}
+      whileHover={{ scale: 1.05 }}
+      transition={{ duration: 0.3, ease: "easeOut" }}
       onClick={onClick}
     >
       <div className={classes.thumbnail}>
