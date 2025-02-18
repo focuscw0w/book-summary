@@ -7,7 +7,7 @@ import { useFormState } from "react-dom";
 import classes from "../layout.module.css";
 
 import { createUser } from "@/features/auth/actions/actions";
-import SubmitButton from "@/features/auth/components/submit-button";
+import SubmitButton from "@/components/UI/submit-button/submit-button";
 
 export default function SignUpPage() {
   const [state, formAction] = useFormState(createUser, undefined);

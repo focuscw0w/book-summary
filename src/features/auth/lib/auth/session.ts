@@ -7,6 +7,7 @@ import prisma from "@/lib/db";
 const secretKey = process.env.SESSION_SECRET;
 const encodedKey = new TextEncoder().encode(secretKey);
 
+// test expiration behavior
 export async function encrypt(payload: any) {
   return new SignJWT(payload)
     .setProtectedHeader({ alg: "HS256" })
@@ -26,7 +27,6 @@ export async function decrypt(session: string | undefined = "") {
   }
 }
 
-// add a check if session in db
 export async function getSession() {
   const session = cookies().get("session")?.value;
 
@@ -34,6 +34,7 @@ export async function getSession() {
   return await decrypt(session);
 }
 
+// test expiration behavior
 export async function createSession(id: number) {
   const expiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
 
@@ -69,7 +70,7 @@ export async function deleteSession() {
   if (!session?.sessionId) return;
 
   await prisma.session.delete({
-    where: { id: session?.sessionId.toString() },
+    where: { id: session?.sessionId as string },
   });
 
   const cookieStore = cookies();
@@ -98,11 +99,5 @@ export async function updateSession(sessionId: string) {
     expires: expiresAt,
     sameSite: "lax",
     path: "/",
-  });
-}
-
-export async function findSessionInDatabase(userId: number) {
-  return await prisma.session.findFirst({
-    where: { userId },
   });
 }

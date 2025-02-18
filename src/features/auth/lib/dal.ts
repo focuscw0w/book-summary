@@ -2,15 +2,14 @@
 "server only";
 
 import { redirect } from "next/navigation";
-import { decrypt } from "./auth/session";
-import { cookies } from "next/headers";
+import { getSession } from "./auth/session";
 import { cache } from "react";
 import prisma from "@/lib/db";
 
 export const verifySession = cache(async () => {
-  const cookie = cookies().get("session")?.value;
-  const session = await decrypt(cookie);
+  const session = await getSession();
 
+  // maybe add check if also is session expired in database
   if (!session?.userId) {
     redirect("/sign-in");
   }

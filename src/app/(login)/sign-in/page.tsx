@@ -7,7 +7,7 @@ import { useFormState } from "react-dom";
 import classes from "../layout.module.css";
 
 import { loginUser } from "@/features/auth/actions/actions";
-import SubmitButton from "@/features/auth/components/submit-button";
+import SubmitButton from "@/components/UI/submit-button/submit-button";
 
 export default function SignInPage() {
   const [state, formAction] = useFormState(loginUser, undefined);
