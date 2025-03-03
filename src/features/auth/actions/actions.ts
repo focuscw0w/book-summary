@@ -25,6 +25,7 @@ export async function createUser(prevState: FormState, formData: FormData) {
 
   const { email, password } = validatedFields.data;
 
+  // add a type for user
   let foundUser;
   try {
     foundUser = await findUserInDatabase(email);
@@ -42,6 +43,7 @@ export async function createUser(prevState: FormState, formData: FormData) {
 
   const hashedPassword = await hashPassword(password);
 
+  // add a type for user
   let user;
   try {
     user = await createUserInDatabase(email, hashedPassword);

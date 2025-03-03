@@ -18,6 +18,7 @@ model User {
   email     String   @unique
   password  String
   sessions  Session[]
+  summarizedBooks SummarizedBook[] @relation("SummarizedBook")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -27,4 +28,17 @@ model Session {
   userId       Int
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model SummarizedBook {
+  id            Int      @id @default(autoincrement())
+  title         String
+  authors       String
+  publisher     String?
+  publishedDate String?
+  description   String?
+  previewLink   String?
+  summarizedText String
+  userId        Int
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade, name: "SummarizedBook")
 }

@@ -4,7 +4,7 @@
 
 .link {
   cursor: pointer;
-  transition: color 0.2s ease-in-out;
+  transition: color 0.2s ease-in;
 
   &:hover {
     color: var(--highlight-color);

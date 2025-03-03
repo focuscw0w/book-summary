@@ -1,6 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
+import Link from "next/link";
 import classes from "./nav-link.module.css";
 
 interface NavLinkProps {
@@ -14,9 +15,12 @@ export default function NavLink({ href, children }: NavLinkProps) {
 
   return (
     <li>
-      <a className={`${classes.link} ${isActive ? classes.active : ""}`}>
+      <Link
+        className={`${classes.link} ${isActive ? classes.active : ""}`}
+        href={href}
+      >
         {children}
-      </a>
+      </Link>
     </li>
   );
 }

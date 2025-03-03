@@ -2,26 +2,13 @@ import Image from "next/image";
 
 import { VolumeInfo } from "../../models/Book";
 import { truncateDescription } from "../../lib/text";
+import { summarizeBook } from "@/features/AI/actions/actions";
 import classes from "./modal-details.module.css";
 import SubmitButton from "@/components/UI/submit-button/submit-button";
 
 const maxDescriptionLength = 250;
 
 export default function ModalDetails({ bookInfo }: { bookInfo: VolumeInfo }) {
-  async function summarizeBook() {
-    const response = await fetch("api/chat", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ bookName: bookInfo.title }),
-    });
-
-    const data: string = await response.json();
-    // add to db
-    // redirect to /my-books
-
-    console.log(data);
-  }
-
   const description = truncateDescription(
     bookInfo.description,
     maxDescriptionLength
@@ -46,7 +33,7 @@ export default function ModalDetails({ bookInfo }: { bookInfo: VolumeInfo }) {
           <p>No cover available</p>
         )}
       </div>
-      <form action={summarizeBook}>
+      <form action={() => summarizeBook(bookInfo, bookInfo.title)}>
         <SubmitButton>Summarize</SubmitButton>
       </form>
     </>
