@@ -1,5 +1,3 @@
-// use server?
-
 import { VolumeInfo } from "@/features/search/models/Book";
 import prisma from "@/lib/db";
 
@@ -14,6 +12,8 @@ export async function addBookToDatabase({
   summarizedText,
   userId,
 }: Props) {
+  // TODO: add a thumbnail
+
   const book = {
     title: bookInfo.title,
     authors: bookInfo.authors?.join(", ") || "Unknown",
@@ -28,8 +28,4 @@ export async function addBookToDatabase({
   await prisma.summarizedBook.create({
     data: book,
   });
-}
-
-export async function getBooksFromDatabase(userId: number) {
-  // TODO....
 }

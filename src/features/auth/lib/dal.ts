@@ -9,7 +9,6 @@ import prisma from "@/lib/db";
 export const verifySession = cache(async () => {
   const session = await getSession();
 
-  // maybe add check if also is session expired in database
   if (!session?.userId) {
     redirect("/sign-in");
   }

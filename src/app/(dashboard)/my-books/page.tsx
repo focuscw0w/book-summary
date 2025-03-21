@@ -1,7 +1,18 @@
-import classes from "./page.module.css";
+import { getUser } from "@/features/auth/lib/dal";
+import { redirect } from "next/navigation";
+import { Suspense } from "react";
+import BookList from "@/features/books/components/book-list/book-list";
+import Spinner from "@/components/UI/spinner/spinner";
 
 export default async function MyBooks() {
-  // tanstack
+  const user = await getUser();
+  if (!user) {
+    redirect("/sign-in");
+  }
 
-  return <div className={classes.container}>My Books</div>;
+  return (
+    <Suspense fallback={<Spinner variant="Lines" color="black" />}>
+      <BookList userId={user.id} />
+    </Suspense>
+  );
 }
