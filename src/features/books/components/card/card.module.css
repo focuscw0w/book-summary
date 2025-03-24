@@ -1,0 +1,33 @@
+.card {
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding: 1rem 1.5rem;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.about {
+  flex: 1;
+  min-width: 0;
+}
+
+.description {
+  margin-top: 1rem;
+  overflow-wrap: break-word;
+}
+
+.title {
+  line-height: 2rem;
+  margin-bottom: 0.4rem;
+}
+
+.image {
+  position: relative;
+  width: 30%;
+  height: 100%;
+  aspect-ratio: 2/1;
+}

@@ -34,6 +34,7 @@ model SummarizedBook {
   id            Int      @id @default(autoincrement())
   title         String
   authors       String
+  image         String?
   publisher     String?
   publishedDate String?
   description   String?

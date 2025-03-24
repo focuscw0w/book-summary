@@ -1,5 +1,5 @@
 import { getBooksFromDatabase } from "../../utils/db";
-import Card from "../card";
+import Card from "../card/card";
 import classes from "./book-list.module.css";
 import { SummarizedBook } from "@/features/AI/models/Book";
 

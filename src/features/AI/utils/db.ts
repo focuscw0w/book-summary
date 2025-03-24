@@ -17,6 +17,7 @@ export async function addBookToDatabase({
   const book = {
     title: bookInfo.title,
     authors: bookInfo.authors?.join(", ") || "Unknown",
+    image: bookInfo.imageLinks?.thumbnail || "",
     publisher: bookInfo.publisher,
     publishedDate: bookInfo.publishedDate,
     description: bookInfo.description,
