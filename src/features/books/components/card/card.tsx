@@ -18,7 +18,7 @@ export default function Card(book: SummarizedBook) {
   console.log(book);
 
   // refactor using helper functions
-  //const authors = formatAuthors(book.authors, maxAuthors);
+  // const authors = formatAuthors(book.authors, maxAuthors);
 
   const description = truncateDescription(
     book.description,
