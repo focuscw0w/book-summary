@@ -1,6 +1,6 @@
 "use server";
 
-import { VolumeInfo } from "@/features/search/models/Book";
+import { VolumeInfo } from "@/features/search/definitions/Book";
 import { addBookToDatabase } from "../utils/db";
 import { getUser } from "@/features/auth/lib/dal";
 import { redirect } from "next/navigation";

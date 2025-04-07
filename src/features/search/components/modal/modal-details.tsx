@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import { VolumeInfo } from "../../models/Book";
+import { VolumeInfo } from "../../definitions/Book";
 import { truncateDescription } from "../../lib/text";
 import { summarizeBook } from "@/features/AI/actions/actions";
 import classes from "./modal-details.module.css";

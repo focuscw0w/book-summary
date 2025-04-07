@@ -1,4 +1,4 @@
-import { VolumeInfo } from "@/features/search/models/Book";
+import { VolumeInfo } from "@/features/search/definitions/Book";
 import prisma from "@/lib/db";
 
 interface Props {

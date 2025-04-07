@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import { VolumeInfo } from "@/features/search/models/Book";
+import { VolumeInfo } from "@/features/search/definitions/Book";
 import { motion } from "framer-motion";
 import { truncateDescription, formatAuthors } from "../../lib/text";
 import { scaleFadeVariants } from "../../lib/animation";

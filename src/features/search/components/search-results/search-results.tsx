@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Book, VolumeInfo } from "@/features/search/models/Book";
+import { Book, VolumeInfo } from "@/features/search/definitions/Book";
 import classes from "./search-results.module.css";
 
 import SearchItem from "../search-item/search-item";
