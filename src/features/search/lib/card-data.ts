@@ -1,4 +1,4 @@
-import { VolumeInfo } from "../definitions/Book";
+import { VolumeInfo } from "../definitions/book-response";
 
 interface CardData {
   title: string;
@@ -9,9 +9,7 @@ interface CardData {
 export function mapVolumeInfoToCardData(volume: VolumeInfo): CardData {
   return {
     title: volume.title ?? "No title",
-    description:
-      volume.description ??
-      "No description available",
+    description: volume.description ?? "No description available",
     image: volume.imageLinks?.thumbnail ?? "",
   };
 }

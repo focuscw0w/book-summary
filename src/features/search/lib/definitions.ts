@@ -1,14 +1,3 @@
-export interface Book {
-  kind: string;
-  id: string;
-  etag: string;
-  selfLink: string;
-  volumeInfo: VolumeInfo;
-  saleInfo: SaleInfo;
-  accessInfo: AccessInfo;
-  searchInfo?: SearchInfo;
-}
-
 export interface VolumeInfo {
   title: string;
   authors?: string[];
@@ -38,13 +27,13 @@ interface ImageLinks {
   thumbnail?: string;
 }
 
-interface SaleInfo {
+export interface SaleInfo {
   country: string;
   saleability: string;
   isEbook: boolean;
 }
 
-interface AccessInfo {
+export interface AccessInfo {
   country: string;
   viewability: string;
   embeddable: boolean;
@@ -57,6 +46,6 @@ interface AccessInfo {
   quoteSharingAllowed: boolean;
 }
 
-interface SearchInfo {
+export interface SearchInfo {
   textSnippet: string;
 }

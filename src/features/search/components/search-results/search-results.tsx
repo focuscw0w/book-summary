@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { Book, VolumeInfo } from "@/features/search/definitions/Book";
+import { Book } from "@/features/books/models/Book";
+import { VolumeInfo } from "../../lib/definitions";
 import classes from "./search-results.module.css";
 
 import { mapVolumeInfoToCardData } from "../../lib/card-data";

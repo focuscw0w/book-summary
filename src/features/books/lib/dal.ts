@@ -1,7 +1,7 @@
-"server only"
+"server only";
 
-import { VolumeInfo } from "@/features/search/definitions/Book";
-import { SummarizedBook } from "@/features/AI/definitions/Book";
+import { VolumeInfo } from "@/features/search/lib/definitions";
+import { SummarizedBook } from "../models/Book";
 import prisma from "@/lib/db";
 
 interface Props {
@@ -42,11 +42,7 @@ export async function getBooksFromDatabase(
   });
 }
 
-export async function removeBookFromDatabase(
-  userId: number,
-  bookId: number
-){
-  // add DAL
+export async function removeBookFromDatabase(userId: number, bookId: number) {
   await prisma.summarizedBook.deleteMany({
     where: {
       userId,

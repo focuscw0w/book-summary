@@ -1,8 +1,8 @@
 import Image from "next/image";
 
-import { VolumeInfo } from "../../definitions/Book";
+import { VolumeInfo } from "../../lib/definitions";
 import { truncateDescription } from "../../lib/text";
-import { summarizeBook} from "@/features/books/actions/actions"
+import { summarizeBook } from "@/features/books/actions/actions";
 import classes from "./modal-details.module.css";
 import SubmitButton from "@/components/UI/submit-button/submit-button";
 

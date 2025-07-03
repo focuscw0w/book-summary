@@ -1,4 +1,4 @@
-import { Book } from "../definitions/Book";
+import { Book } from "@/features/books/models/Book";
 
 interface BookResponse {
   kind: string;
