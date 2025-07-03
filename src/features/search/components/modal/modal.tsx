@@ -4,7 +4,6 @@ import { useEffect } from "react";
 import ReactDOM from "react-dom";
 
 import { motion } from "framer-motion";
-import { scaleFadeVariants } from "../../lib/animation";
 import { MdClose } from "react-icons/md";
 import classes from "./modal.module.css";
 
@@ -13,6 +12,13 @@ interface ModalProps {
   onClose: () => void;
   children: React.ReactNode;
 }
+
+const scaleFadeVariants = {
+  hidden: { opacity: 0, scale: 0.8 },
+  visible: { opacity: 1, scale: 1 },
+  exit: { opacity: 0, scale: 0.8 },
+};
+
 
 export default function Modal({ isOpen, onClose, children }: ModalProps) {
   useEffect(() => {

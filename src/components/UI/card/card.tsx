@@ -31,6 +31,7 @@ interface CardProps<T> extends ComponentProps<typeof motion.div> {
 }
 
 export function Card<T>({ data, children, onClick, ...rest }: CardProps<T>) {
+  console.log(data)
   return (
     <CardContext.Provider value={{ data }}>
       <motion.div

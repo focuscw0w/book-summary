@@ -1,4 +1,7 @@
+"server only"
+
 import { VolumeInfo } from "@/features/search/definitions/Book";
+import { SummarizedBook } from "@/features/AI/definitions/Book";
 import prisma from "@/lib/db";
 
 interface Props {
@@ -12,8 +15,6 @@ export async function addBookToDatabase({
   summarizedText,
   userId,
 }: Props) {
-  // TODO: add a thumbnail
-
   const book = {
     title: bookInfo.title,
     authors: bookInfo.authors?.join(", ") || "Unknown",
@@ -28,5 +29,28 @@ export async function addBookToDatabase({
 
   await prisma.summarizedBook.create({
     data: book,
+  });
+}
+
+export async function getBooksFromDatabase(
+  userId: number
+): Promise<SummarizedBook[]> {
+  return prisma.summarizedBook.findMany({
+    where: {
+      userId,
+    },
+  });
+}
+
+export async function removeBookFromDatabase(
+  userId: number,
+  bookId: number
+){
+  // add DAL
+  await prisma.summarizedBook.deleteMany({
+    where: {
+      userId,
+      id: bookId,
+    },
   });
 }

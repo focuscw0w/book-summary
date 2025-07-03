@@ -4,7 +4,15 @@ import { useState } from "react";
 import { Book, VolumeInfo } from "@/features/search/definitions/Book";
 import classes from "./search-results.module.css";
 
-import SearchItem from "../search-item/search-item";
+import { mapVolumeInfoToCardData } from "../../lib/card-data";
+import { formatAuthors } from "../../lib/text";
+import {
+  Card,
+  CardTitle,
+  CardDescription,
+  CardImage,
+  CardContent,
+} from "@/components/UI/card/card";
 import Spinner from "@/components/UI/spinner/spinner";
 import Modal from "../modal/modal";
 import ModalDetails from "../modal/modal-details";
@@ -50,13 +58,26 @@ export default function SearchResults({
     <>
       <div className={classes.container}>
         <ul>
-          {data.items.map((book: Book) => (
-            <SearchItem
-              onClick={() => openModal(book.volumeInfo)}
-              bookInfo={book.volumeInfo}
-              key={book.id}
-            />
-          ))}
+          {data.items.map((book: Book) => {
+            const volumeInfo = book.volumeInfo;
+            return (
+              <Card
+                data={mapVolumeInfoToCardData(volumeInfo)}
+                key={book.id}
+                onClick={() => openModal(volumeInfo)}
+              >
+                <CardContent>
+                  <CardTitle />
+                  <p>Authors: {formatAuthors(volumeInfo.authors)}</p>
+                  {volumeInfo.publishedDate && (
+                    <p>Published: {volumeInfo.publishedDate}</p>
+                  )}
+                  <CardDescription />
+                </CardContent>
+                <CardImage />
+              </Card>
+            );
+          })}
         </ul>
       </div>
       <Modal isOpen={isModalOpen} onClose={closeModal}>

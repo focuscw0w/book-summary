@@ -23,7 +23,7 @@ export default async function fetchBook(
 
     const data: BookResponse = await response.json();
     return data;
-  } catch (error: unknown) {
+  } catch {
     throw new Error("An error occurred while fetching the book");
   }
 }

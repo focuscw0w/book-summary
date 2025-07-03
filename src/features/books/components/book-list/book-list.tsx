@@ -1,4 +1,4 @@
-import { getBooksFromDatabase } from "../../utils/db";
+import { getBooksFromDatabase } from "@/features/books/lib/dal";
 /* import Card from "../card/card";
  */ import {
   Card,
