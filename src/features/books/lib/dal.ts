@@ -10,6 +10,7 @@ interface Props {
   userId: number;
 }
 
+// TODO: rename functions to be more descriptive
 export async function addBookToDatabase({
   bookInfo,
   summarizedText,
@@ -38,6 +39,14 @@ export async function getBooksFromDatabase(
   return prisma.summarizedBook.findMany({
     where: {
       userId,
+    },
+  });
+}
+
+export async function getBookById(userId: string) {
+  return prisma.summarizedBook.findUnique({
+    where: {
+      id: Number(userId),
     },
   });
 }

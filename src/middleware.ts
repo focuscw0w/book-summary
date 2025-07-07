@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { deleteSession, getSession } from "@/features/auth/lib/auth/session";
 
-const protectedRoutes = ["/"];
+const protectedRoutes = ["/", "my-books"];
 const publicRoutes = ["sign-in", "sign-up"];
 
 export default async function middleware(request: NextRequest) {
