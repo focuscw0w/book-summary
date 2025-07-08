@@ -3,9 +3,19 @@
   display: flex;
   align-items: center;
   gap: 1rem;
-  padding: 1rem;
+  padding: 1.2rem;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   border-radius: 8px;
+  cursor: pointer;
+}
+
+.controls {
+  border: none;
+  background: none;
+  position: absolute;
+  right: .1rem;
+  top: .1rem;
+  transition: transform 0.2s ease, color 0.2s ease;
   cursor: pointer;
 }
 
@@ -20,6 +30,7 @@
 }
 
 .title {
+  font-size: 1.8rem;
   line-height: 2rem;
   margin-bottom: 0.4rem;
 }

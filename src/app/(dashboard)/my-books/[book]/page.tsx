@@ -42,12 +42,7 @@ export default async function BookPage({
           </p>
         </div>
         <div className={classes.image}>
-          <Image
-            src={book.image || ""}
-            alt={book.title}
-            sizes="auto"
-            fill
-          />
+          <Image src={book.image || ""} alt={book.title} sizes="auto" fill />
         </div>
       </section>
 

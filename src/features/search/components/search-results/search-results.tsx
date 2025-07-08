@@ -15,8 +15,8 @@ import {
   CardContent,
 } from "@/components/UI/card/card";
 import Spinner from "@/components/UI/spinner/spinner";
-import Modal from "../modal/modal";
-import ModalDetails from "../modal/modal-details";
+import Modal from "../../../../components/UI/modal/modal";
+import ModalDetails from "../search-detail/search-detail";
 
 interface SearchResultsProps {
   data: { items: Book[] } | undefined;

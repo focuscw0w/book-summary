@@ -3,12 +3,12 @@ import Image from "next/image";
 import { VolumeInfo } from "../../lib/definitions";
 import { truncateDescription } from "@/lib/text";
 import { summarizeBook } from "@/features/books/actions/actions";
-import classes from "./modal-details.module.css";
+import classes from "./search-detail.module.css";
 import SubmitButton from "@/components/UI/submit-button/submit-button";
 
 const maxDescriptionLength = 250;
 
-export default function ModalDetails({ bookInfo }: { bookInfo: VolumeInfo }) {
+export default function SearchDetail({ bookInfo }: { bookInfo: VolumeInfo }) {
   const description = truncateDescription(
     bookInfo.description,
     maxDescriptionLength

@@ -25,7 +25,7 @@ export default async function BookList({ userId }: { userId: number }) {
           className={classes.link}
           key={book.id}
         >
-          <Card data={book} key={book.id}>
+          <Card data={book} controls key={book.id}>
             <CardContent>
               <CardTitle />
               <CardDescription />

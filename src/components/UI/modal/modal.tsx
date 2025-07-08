@@ -19,7 +19,6 @@ const scaleFadeVariants = {
   exit: { opacity: 0, scale: 0.8 },
 };
 
-
 export default function Modal({ isOpen, onClose, children }: ModalProps) {
   useEffect(() => {
     const handleEscape = (event: KeyboardEvent) => {

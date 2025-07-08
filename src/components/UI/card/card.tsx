@@ -1,10 +1,18 @@
 "use client";
 
 import Image from "next/image";
-import { createContext, useContext, ReactNode, ComponentProps } from "react";
+import { MdClose } from "react-icons/md";
+import {
+  createContext,
+  useContext,
+  useState,
+  ReactNode,
+  ComponentProps,
+} from "react";
 import { motion } from "framer-motion";
 import { scaleFadeVariants } from "./animation";
 import { truncateDescription } from "@/lib/text";
+import Modal from "@/components/UI/modal/modal";
 import classes from "./card.module.css";
 
 interface CardContextType<T> {
@@ -27,10 +35,19 @@ function useCardContext<T>() {
 interface CardProps<T> extends ComponentProps<typeof motion.div> {
   data: T;
   children: ReactNode;
+  controls?: boolean;
   onClick?: () => void;
 }
 
-export function Card<T>({ data, children, onClick, ...rest }: CardProps<T>) {
+export function Card<T>({
+  data,
+  children,
+  onClick,
+  controls,
+  ...rest
+}: CardProps<T>) {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <CardContext.Provider value={{ data }}>
       <motion.div
@@ -45,6 +62,17 @@ export function Card<T>({ data, children, onClick, ...rest }: CardProps<T>) {
         {...rest}
       >
         {children}
+        {controls && (
+          <button
+            className={classes.controls}
+            onClick={() => setIsModalOpen(true)}
+          >
+            <MdClose size={30} color="#dc2626" />
+          </button>
+        )}
+        <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+          <p>popup</p>
+        </Modal>
       </motion.div>
     </CardContext.Provider>
   );
