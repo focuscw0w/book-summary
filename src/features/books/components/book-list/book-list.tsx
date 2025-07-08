@@ -1,6 +1,5 @@
 import { getBooksFromDatabase } from "@/features/books/lib/dal";
-/* import Card from "../card/card";
- */ import {
+import {
   Card,
   CardTitle,
   CardDescription,
@@ -8,7 +7,8 @@ import { getBooksFromDatabase } from "@/features/books/lib/dal";
   CardContent,
 } from "@/components/UI/card/card";
 import classes from "./book-list.module.css";
-import { SummarizedBook } from "@/features/AI/definitions/Book";
+import { SummarizedBook } from "@/features/books/models/Book";
+import Link from "next/link";
 
 export default async function BookList({ userId }: { userId: number }) {
   const books: SummarizedBook[] = await getBooksFromDatabase(userId);
@@ -20,13 +20,19 @@ export default async function BookList({ userId }: { userId: number }) {
   return (
     <div className={classes.container}>
       {books.map((book: SummarizedBook) => (
-        <Card data={book} key={book.id}>
-          <CardContent>
-            <CardTitle />
-            <CardDescription />
-          </CardContent>
-          <CardImage />
-        </Card>
+        <Link
+          href={`/my-books/${book.slug}`}
+          className={classes.link}
+          key={book.id}
+        >
+          <Card data={book} key={book.id}>
+            <CardContent>
+              <CardTitle />
+              <CardDescription />
+            </CardContent>
+            <CardImage />
+          </Card>
+        </Link>
       ))}
     </div>
   );

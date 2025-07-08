@@ -3,11 +3,12 @@ import {
   SaleInfo,
   AccessInfo,
   SearchInfo,
-} from "@/features/search/definitions/book-response";
+} from "@/features/search/lib/definitions";
 
 export interface SummarizedBook {
   id: number;
   title: string;
+  slug: string;
   authors: string;
   image: string | null;
   publisher?: string | null;

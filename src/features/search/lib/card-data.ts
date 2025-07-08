@@ -1,4 +1,4 @@
-import { VolumeInfo } from "../definitions/book-response";
+import { VolumeInfo } from "../lib/definitions";
 
 interface CardData {
   title: string;

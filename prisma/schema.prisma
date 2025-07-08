@@ -33,6 +33,7 @@ model Session {
 model SummarizedBook {
   id            Int      @id @default(autoincrement())
   title         String
+  slug          String   @unique
   authors       String
   image         String?
   publisher     String?

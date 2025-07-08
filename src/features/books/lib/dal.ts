@@ -3,6 +3,7 @@
 import { VolumeInfo } from "@/features/search/lib/definitions";
 import { SummarizedBook } from "../models/Book";
 import prisma from "@/lib/db";
+import { slugify } from "./text";
 
 interface Props {
   bookInfo: VolumeInfo;
@@ -18,6 +19,7 @@ export async function addBookToDatabase({
 }: Props) {
   const book = {
     title: bookInfo.title,
+    slug: slugify(bookInfo.title),
     authors: bookInfo.authors?.join(", ") || "Unknown",
     image: bookInfo.imageLinks?.thumbnail || "",
     publisher: bookInfo.publisher,
