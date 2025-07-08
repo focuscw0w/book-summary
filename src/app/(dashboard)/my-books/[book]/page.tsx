@@ -6,6 +6,7 @@ import { formatText } from "@/features/books/lib/text";
 import { redirect } from "next/navigation";
 import classes from "./page.module.css";
 import Image from "next/image";
+import BookControls from "@/features/books/components/book-controls/book-controls";
 
 export default async function BookPage({
   params,
@@ -24,9 +25,12 @@ export default async function BookPage({
 
   return (
     <div className={classes.container}>
+      <header className={classes.header}>
+        <h1 className={classes.title}>{book.title}</h1>
+        <BookControls />
+      </header>
       <section className={classes.info}>
         <div className={classes.bibliography}>
-          <h1>{book.title}</h1>
           <p>
             <strong>Authors</strong>: {book.authors}
           </p>

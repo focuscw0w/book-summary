@@ -5,6 +5,12 @@
   line-height: 1.4;
 }
 
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
 .info {
   display: flex;
   justify-content: space-between;

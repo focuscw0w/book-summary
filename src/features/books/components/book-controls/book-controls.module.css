@@ -1,0 +1,25 @@
+.controls {
+  cursor: pointer;
+  padding: 0.3rem;
+  background-color: var(--background-color-secondary);
+  border: 1px solid;
+  border-radius: 3px;
+  transition: background-color 0.2s ease-in-out, transform 0.2s ease;
+}
+
+.controls:hover {
+  background-color: #2e2e2ed4;
+}
+
+.wrapper {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.text {
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: bold;
+}
