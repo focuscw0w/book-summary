@@ -45,10 +45,11 @@ export async function getBooksFromDatabase(
   });
 }
 
-export async function getBookById(userId: string) {
-  return prisma.summarizedBook.findUnique({
+export async function getBook(userId: number, slug: string) {
+  return prisma.summarizedBook.findFirst({
     where: {
-      id: Number(userId),
+      userId,
+      slug,
     },
   });
 }
