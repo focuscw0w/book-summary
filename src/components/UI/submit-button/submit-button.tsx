@@ -10,7 +10,7 @@ export default function SubmitButton({
   const { pending } = useFormStatus();
 
   return (
-    <Button isSubmitting={pending} type="submit">
+    <Button isSubmitting={pending} type="submit" variant="primary">
       {children}
     </Button>
   );

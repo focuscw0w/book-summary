@@ -26,11 +26,11 @@ export default async function BookPage({
   return (
     <div className={classes.container}>
       <header className={classes.header}>
-        <h1 className={classes.title}>{book.title}</h1>
         <BookControls />
       </header>
       <section className={classes.info}>
         <div className={classes.bibliography}>
+          <h1 className={classes.title}>{book.title}</h1>
           <p>
             <strong>Authors</strong>: {book.authors}
           </p>
