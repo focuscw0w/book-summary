@@ -55,4 +55,4 @@ export default async function BookPage({
       <p>{formatText(book.summarizedText)}</p>
     </div>
   );
-}a
+}
