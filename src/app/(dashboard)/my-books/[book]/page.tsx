@@ -20,7 +20,7 @@ export default async function BookPage({
 
   const book = (await getBook(user.id, params.slug)) as SummarizedBook | null;
   if (!book) {
-    return <p>Something went wrong!</p>;
+    throw new Error();
   }
 
   return (

@@ -4,9 +4,10 @@
 
 .link {
   cursor: pointer;
+  color: var(--highlight-color);
   transition: color 0.2s ease-in;
+}
 
-  &:hover {
-    color: var(--highlight-color);
-  }
+.link:hover {
+  color: var(--highlight-color-hover);
 }

@@ -16,7 +16,7 @@
   color: #ffffff;
 
   &:hover {
-    background-color: #7a9cc0;
+    background-color: var(--highlight-color-hover);
   }
 
   &:disabled {
