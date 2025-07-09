@@ -7,3 +7,9 @@
 .link {
   color: inherit;
 }
+
+.message {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+}

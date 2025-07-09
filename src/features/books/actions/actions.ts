@@ -1,7 +1,7 @@
 "use server";
 
 import { VolumeInfo } from "@/features/search/lib/definitions";
-import { addBookToDatabase, removeBookFromDatabase } from "../lib/dal";
+import { createBook, deleteBook } from "../lib/dal";
 import { getUser } from "@/features/auth/lib/dal";
 import { redirect } from "next/navigation";
 
@@ -12,7 +12,7 @@ export async function summarizeBook(bookInfo: VolumeInfo, bookName: string) {
     throw new Error("Unauthorized");
   }
 
-  const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/chat`, {
+  /*   const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/chat`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ bookName }),
@@ -28,22 +28,32 @@ export async function summarizeBook(bookInfo: VolumeInfo, bookName: string) {
     await addBookToDatabase({ bookInfo, summarizedText, userId: user.id });
   } catch (error: unknown) {
     throw new Error(`Error adding book to database. ${error}`);
-  }
+  } */
+  await createBook({
+    bookInfo,
+    summarizedText: bookName,
+    userId: user.id,
+  });
 
   redirect("/my-books");
 }
 
-export async function removeBook(bookId: number, userId: number) {
+export async function removeBook(bookId: number) {
   const user = await getUser();
 
-  if (!user || user.id !== userId) {
+  if (!user) {
     throw new Error("Unauthorized");
   }
 
   try {
-    removeBookFromDatabase(userId, bookId);
+    await deleteBook(user.id, bookId);
   } catch (error: unknown) {
-    throw new Error(`Error removing book from database. ${error}`);
+    console.log(error);
+    return {
+      errors: {
+        message: ["Something went wrong. Please try again later."],
+      },
+    };
   }
 
   redirect("/my-books");

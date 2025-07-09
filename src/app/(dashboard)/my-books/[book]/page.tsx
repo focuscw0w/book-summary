@@ -26,7 +26,7 @@ export default async function BookPage({
   return (
     <div className={classes.container}>
       <header className={classes.header}>
-        <BookControls />
+        <BookControls bookId={book.id} />
       </header>
       <section className={classes.info}>
         <div className={classes.bibliography}>
@@ -55,4 +55,4 @@ export default async function BookPage({
       <p>{formatText(book.summarizedText)}</p>
     </div>
   );
-}
+}a

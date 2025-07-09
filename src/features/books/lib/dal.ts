@@ -11,13 +11,12 @@ interface Props {
   userId: number;
 }
 
-// TODO: rename functions to be more descriptive
-export async function addBookToDatabase({
+export async function createBook({
   bookInfo,
   summarizedText,
   userId,
 }: Props) {
-  const book = {
+  /*  const book = {
     title: bookInfo.title,
     slug: slugify(bookInfo.title),
     authors: bookInfo.authors?.join(", ") || "Unknown",
@@ -28,14 +27,27 @@ export async function addBookToDatabase({
     previewLink: bookInfo.previewLink,
     summarizedText: summarizedText,
     userId,
+  }; */
+
+  const testBook = {
+    title: "test 1",
+    slug: "test slug",
+    authors: "Unknown",
+    image: "",
+    publisher: "test author",
+    publishedDate: "",
+    description: "",
+    previewLink: "",
+    summarizedText: "test test test test test",
+    userId: userId,
   };
 
   await prisma.summarizedBook.create({
-    data: book,
+    data: testBook,
   });
 }
 
-export async function getBooksFromDatabase(
+export async function getAllBooks(
   userId: number
 ): Promise<SummarizedBook[]> {
   return prisma.summarizedBook.findMany({
@@ -54,7 +66,7 @@ export async function getBook(userId: number, slug: string) {
   });
 }
 
-export async function removeBookFromDatabase(userId: number, bookId: number) {
+export async function deleteBook(userId: number, bookId: number) {
   await prisma.summarizedBook.deleteMany({
     where: {
       userId,

@@ -1,11 +1,16 @@
 "use client";
 
-import Modal from "@/components/UI/modal/modal";
 import { useState } from "react";
+import { useFormState } from "react-dom";
+import { removeBook } from "../../actions/actions";
+import Modal from "@/components/UI/modal/modal";
 import classes from "./book-controls.module.css";
 import Button from "@/components/UI/button/button";
 
-export default function BookControls() {
+export default function BookControls({ bookId }: { bookId: number }) {
+  const removeBookAction = removeBook.bind(null, bookId);
+  const [state, formAction] = useFormState(removeBookAction, undefined);
+
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   function openModal() {
@@ -26,14 +31,17 @@ export default function BookControls() {
         <p className={classes.text}>
           Are you sure you want to delete your summarized book?
         </p>
-        <div className={classes.wrapper}>
-          <Button type="button" variant="primary">
+        {state?.errors.message && (
+          <p className={classes.error}>{state.errors.message}</p>
+        )}
+        <form action={formAction} className={classes.wrapper}>
+          <Button type="button" variant="primary" onClick={closeModal}>
             Close
           </Button>
-          <Button type="button" variant="danger">
+          <Button type="submit" variant="danger">
             Delete
           </Button>
-        </div>
+        </form>
       </Modal>
     </>
   );

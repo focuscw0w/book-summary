@@ -1,4 +1,4 @@
-import { getBooksFromDatabase } from "@/features/books/lib/dal";
+import { getAllBooks } from "@/features/books/lib/dal";
 import {
   Card,
   CardTitle,
@@ -11,10 +11,10 @@ import { SummarizedBook } from "@/features/books/models/Book";
 import Link from "next/link";
 
 export default async function BookList({ userId }: { userId: number }) {
-  const books: SummarizedBook[] = await getBooksFromDatabase(userId);
+  const books: SummarizedBook[] = await getAllBooks(userId);
 
   if (books.length === 0) {
-    return <p>You don&#39;t have any books yet.</p>;
+    return <p className={classes.message}>You don&#39;t have any books yet.</p>;
   }
 
   return (
