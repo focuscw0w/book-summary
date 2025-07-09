@@ -6,6 +6,11 @@ const publicRoutes = ["/sign-in", "/sign-up"];
 
 export default async function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname;
+
+  if (path.startsWith("/api")) {
+    return NextResponse.next();
+  }
+
   const isProtectedRoute = protectedRoutes.some((route) =>
     path.startsWith(route)
   );

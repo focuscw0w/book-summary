@@ -3,9 +3,11 @@
 import { useState } from "react";
 import { useFormState } from "react-dom";
 import { removeBook } from "../../actions/actions";
+import { FaArrowLeft } from "react-icons/fa";
 import Modal from "@/components/UI/modal/modal";
 import classes from "./book-controls.module.css";
 import Button from "@/components/UI/button/button";
+import { useRouter } from "next/navigation";
 
 export default function BookControls({ bookId }: { bookId: number }) {
   const removeBookAction = removeBook.bind(null, bookId);
@@ -21,8 +23,13 @@ export default function BookControls({ bookId }: { bookId: number }) {
     setIsModalOpen(false);
   }
 
+  const router = useRouter();
+
   return (
-    <>
+    <div className={classes.container}>
+      <Button type="button" variant="primary" onClick={() => router.back()}>
+        <FaArrowLeft size={20} />
+      </Button>
       <Button type="button" variant="danger" onClick={openModal}>
         Delete
       </Button>
@@ -43,6 +50,6 @@ export default function BookControls({ bookId }: { bookId: number }) {
           </Button>
         </form>
       </Modal>
-    </>
+    </div>
   );
 }

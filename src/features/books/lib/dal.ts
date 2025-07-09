@@ -12,7 +12,7 @@ interface Props {
 }
 
 export async function createBook({ bookInfo, summarizedText, userId }: Props) {
-  /*  const book = {
+  const book = {
     title: bookInfo.title,
     slug: slugify(bookInfo.title),
     authors: bookInfo.authors?.join(", ") || "Unknown",
@@ -23,23 +23,10 @@ export async function createBook({ bookInfo, summarizedText, userId }: Props) {
     previewLink: bookInfo.previewLink,
     summarizedText: summarizedText,
     userId,
-  }; */
-
-  const testBook = {
-    title: "test 1",
-    slug: "test slug",
-    authors: "Unknown",
-    image: "",
-    publisher: "test author",
-    publishedDate: "",
-    description: "",
-    previewLink: "",
-    summarizedText: "test test test test test",
-    userId: userId,
   };
 
   await prisma.summarizedBook.create({
-    data: testBook,
+    data: book,
   });
 }
 

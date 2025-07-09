@@ -12,10 +12,11 @@ export async function summarizeBook(bookInfo: VolumeInfo, bookName: string) {
     throw new Error("Unauthorized");
   }
 
-  /*   const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/chat`, {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/chat`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ bookName }),
+    credentials: "include",
   });
 
   if (!response.ok) {
@@ -25,15 +26,10 @@ export async function summarizeBook(bookInfo: VolumeInfo, bookName: string) {
   const summarizedText: string = await response.json();
 
   try {
-    await addBookToDatabase({ bookInfo, summarizedText, userId: user.id });
+    await createBook({ bookInfo, summarizedText, userId: user.id });
   } catch (error: unknown) {
     throw new Error(`Error adding book to database. ${error}`);
-  } */
-  await createBook({
-    bookInfo,
-    summarizedText: bookName,
-    userId: user.id,
-  });
+  }
 
   redirect("/my-books");
 }
