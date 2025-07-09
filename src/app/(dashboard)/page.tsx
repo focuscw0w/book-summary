@@ -1,5 +1,4 @@
-import SearchWrapper from "../../features/search/components/search-wrapper/search-wrapper";
-import classes from "./page.module.css";
+import Introduction from "./introduction";
 
 export const metadata = {
   title: "Book Summary",
@@ -7,14 +6,5 @@ export const metadata = {
 };
 
 export default function Home() {
-  return (
-    <div>
-      <h1 className={classes.heading}>
-        Welcome to the <strong>Book Summary!</strong>
-        <br />
-        Let&#39;s summarize your favorite book!
-      </h1>
-      <SearchWrapper />
-    </div>
-  );
+  return <Introduction />;
 }
