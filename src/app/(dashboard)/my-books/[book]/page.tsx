@@ -3,10 +3,35 @@ import { getBook } from "@/features/books/lib/dal";
 import { SummarizedBook } from "@prisma/client";
 import { truncateDescription } from "@/lib/text";
 import { formatText } from "@/features/books/lib/text";
-import { redirect } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
+import type { Metadata } from "next";
 import classes from "./page.module.css";
 import Image from "next/image";
 import BookControls from "@/features/books/components/book-controls/book-controls";
+
+interface Props {
+  params: { slug: string };
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const user = await getUser();
+  if (!user) {
+    return {
+      title: "Unauthorized",
+      description: "You must be signed in to view this content.",
+    };
+  }
+
+  const slug = params.slug;
+
+  const book = await getBook(user.id, slug);
+
+  return {
+    title: book?.title || "Book Summary",
+    description:
+      book?.description || "Read a summarized version of your favorite book.",
+  };
+}
 
 export default async function BookPage({
   params,
@@ -20,7 +45,7 @@ export default async function BookPage({
 
   const book = (await getBook(user.id, params.slug)) as SummarizedBook | null;
   if (!book) {
-    throw new Error();
+    notFound();
   }
 
   return (

@@ -34,7 +34,6 @@ export async function getSession() {
   return await decrypt(session);
 }
 
-// test expiration behavior
 export async function createSession(id: number) {
   const expiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
 

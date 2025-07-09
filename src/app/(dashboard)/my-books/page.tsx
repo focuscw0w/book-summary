@@ -4,6 +4,11 @@ import { Suspense } from "react";
 import BookList from "@/features/books/components/book-list/book-list";
 import Spinner from "@/components/UI/spinner/spinner";
 
+export const metadata = {
+  title: "My Books",
+  description: "View and manage your summarized books",
+};
+
 export default async function MyBooks() {
   const user = await getUser();
   if (!user) {

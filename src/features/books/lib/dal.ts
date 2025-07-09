@@ -11,11 +11,7 @@ interface Props {
   userId: number;
 }
 
-export async function createBook({
-  bookInfo,
-  summarizedText,
-  userId,
-}: Props) {
+export async function createBook({ bookInfo, summarizedText, userId }: Props) {
   /*  const book = {
     title: bookInfo.title,
     slug: slugify(bookInfo.title),
@@ -47,9 +43,7 @@ export async function createBook({
   });
 }
 
-export async function getAllBooks(
-  userId: number
-): Promise<SummarizedBook[]> {
+export async function getAllBooks(userId: number): Promise<SummarizedBook[]> {
   return prisma.summarizedBook.findMany({
     where: {
       userId,
