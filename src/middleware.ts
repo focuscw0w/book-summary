@@ -1,13 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
 import { deleteSession, getSession } from "@/features/auth/lib/auth/session";
 
-const protectedRoutes = ["/", "my-books"];
-const publicRoutes = ["sign-in", "sign-up"];
+const protectedRoutes = ["/", "/my-books"];
+const publicRoutes = ["/sign-in", "/sign-up"];
 
 export default async function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname;
-  const isProtectedRoute = protectedRoutes.includes(path);
-  const isPublicRoute = publicRoutes.includes(path);
+  const isProtectedRoute = protectedRoutes.some((route) =>
+    path.startsWith(route)
+  );
+  const isPublicRoute = publicRoutes.some((route) => path.startsWith(route));
 
   const session = await getSession();
 
@@ -24,11 +26,7 @@ export default async function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL("/sign-in", request.nextUrl));
   }
 
-  if (
-    isPublicRoute &&
-    session?.userId &&
-    !request.nextUrl.pathname.startsWith("/")
-  ) {
+  if (isPublicRoute && session?.userId) {
     return NextResponse.redirect(new URL("/", request.nextUrl));
   }
 
