@@ -54,10 +54,8 @@ export async function createSession(userId: number) {
 export async function deleteSession() {
   const session = await getSession();
 
-  if (!session?.sessionId) return;
+  if (!session) return;
 
   const cookieStore = cookies();
   cookieStore.delete("session");
 }
-
-

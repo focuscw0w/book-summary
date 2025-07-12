@@ -1,8 +1,9 @@
 import { getUser } from "@/features/auth/lib/session-dal";
 import { redirect } from "next/navigation";
+import { Metadata } from "next";
 import BookList from "@/features/books/components/book-list/book-list";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "My Books",
   description: "View and manage your summarized books",
 };

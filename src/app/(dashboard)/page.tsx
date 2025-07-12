@@ -1,6 +1,7 @@
+import { Metadata } from "next";
 import Introduction from "./introduction";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Book Summary",
   description: "Summarize your favorite book easily!",
 };
