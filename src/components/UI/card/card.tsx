@@ -82,7 +82,7 @@ export function CardImage() {
 
   return (
     <div className={classes.image}>
-      <Image src={imageSrc} alt={title} fill />
+      <Image src={imageSrc} alt={title} fill sizes="auto" />
     </div>
   );
 }

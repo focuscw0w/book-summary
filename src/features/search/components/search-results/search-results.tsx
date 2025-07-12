@@ -3,8 +3,6 @@
 import { useState } from "react";
 import { Book } from "@/features/books/models/Book";
 import { VolumeInfo } from "../../lib/definitions";
-import classes from "./search-results.module.css";
-
 import { mapVolumeInfoToCardData } from "../../lib/card-data";
 import { formatAuthors } from "../../lib/text";
 import {
@@ -16,7 +14,8 @@ import {
 } from "@/components/UI/card/card";
 import Spinner from "@/components/UI/spinner/spinner";
 import Modal from "../../../../components/UI/modal/modal";
-import ModalDetails from "../search-detail/search-detail";
+import SearchDetail from "../search-detail/search-detail";
+import classes from "./search-results.module.css";
 
 interface SearchResultsProps {
   data: { items: Book[] } | undefined;
@@ -82,7 +81,7 @@ export default function SearchResults({
         </ul>
       </div>
       <Modal isOpen={isModalOpen} onClose={closeModal}>
-        {selectedBook && <ModalDetails bookInfo={selectedBook} />}
+        {selectedBook && <SearchDetail bookInfo={selectedBook} />}
       </Modal>
     </>
   );

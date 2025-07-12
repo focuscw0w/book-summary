@@ -5,13 +5,17 @@ import { SummarizedBook } from "../models/Book";
 import prisma from "@/lib/db";
 import { slugify } from "./text";
 
-interface Props {
+interface CreateBookProps {
   bookInfo: VolumeInfo;
   summarizedText: string;
   userId: number;
 }
 
-export async function createBook({ bookInfo, summarizedText, userId }: Props) {
+export async function createBook({
+  bookInfo,
+  summarizedText,
+  userId,
+}: CreateBookProps) {
   const book = {
     title: bookInfo.title,
     slug: slugify(bookInfo.title),

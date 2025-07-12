@@ -1,5 +1,5 @@
-import { getUser } from "@/features/auth/lib/dal";
-import { getBook } from "@/features/books/lib/dal";
+import { getUser } from "@/features/auth/lib/session-dal";
+import { getBook } from "@/features/books/lib/database-dal";
 import { SummarizedBook } from "@prisma/client";
 import { truncateDescription } from "@/lib/text";
 import { formatText } from "@/features/books/lib/text";
@@ -9,11 +9,13 @@ import classes from "./page.module.css";
 import Image from "next/image";
 import BookControls from "@/features/books/components/book-controls/book-controls";
 
-interface Props {
+interface MetadataProps {
   params: { slug: string };
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: MetadataProps): Promise<Metadata> {
   const user = await getUser();
   if (!user) {
     return {

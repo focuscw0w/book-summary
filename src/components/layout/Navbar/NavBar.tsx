@@ -1,4 +1,4 @@
-import { getUser } from "@/features/auth/lib/dal";
+import { getUser } from "@/features/auth/lib/session-dal";
 import classes from "./navbar.module.css";
 
 import LogoutButton from "./logout-button";

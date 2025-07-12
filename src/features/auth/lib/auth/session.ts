@@ -2,7 +2,6 @@ import "server-only";
 
 import { cookies } from "next/headers";
 import { SignJWT, jwtVerify } from "jose";
-import prisma from "@/lib/db";
 
 const secretKey = process.env.SESSION_SECRET;
 const encodedKey = new TextEncoder().encode(secretKey);
@@ -23,7 +22,7 @@ export async function decrypt(session: string | undefined = "") {
     });
     return payload;
   } catch (error: unknown) {
-    console.log("Failed to verify session");
+    console.error("Failed to verify session");
   }
 }
 
@@ -34,25 +33,14 @@ export async function getSession() {
   return await decrypt(session);
 }
 
-export async function createSession(id: number) {
+export async function createSession(userId: number) {
   const expiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
 
-  const session = await prisma.session.create({
-    data: {
-      userId: id,
-      expires: expiresAt,
-    },
-  });
-
-  const encryptedSession = await encrypt({
-    sessionId: session.id,
-    userId: session.userId,
-    expiresAt,
-  });
+  const session = await encrypt({ userId });
 
   const cookieStore = cookies();
 
-  cookieStore.set("session", encryptedSession, {
+  cookieStore.set("session", session, {
     httpOnly: true,
     secure: true,
     expires: expiresAt,
@@ -68,35 +56,8 @@ export async function deleteSession() {
 
   if (!session?.sessionId) return;
 
-  await prisma.session.delete({
-    where: { id: session?.sessionId as string },
-  });
-
   const cookieStore = cookies();
   cookieStore.delete("session");
 }
 
-export async function updateSession(sessionId: string) {
-  const session = cookies().get("session")?.value;
-  const payload = await decrypt(session);
 
-  if (!session || !payload) {
-    return null;
-  }
-
-  const expiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
-
-  await prisma.session.update({
-    where: { id: sessionId },
-    data: { expires: expiresAt },
-  });
-
-  const cookieStore = cookies();
-  cookieStore.set("session", session, {
-    httpOnly: true,
-    secure: true,
-    expires: expiresAt,
-    sameSite: "lax",
-    path: "/",
-  });
-}

@@ -1,4 +1,4 @@
-import { getAllBooks } from "@/features/books/lib/dal";
+import { getAllBooks } from "@/features/books/lib/database-dal";
 import {
   Card,
   CardTitle,
@@ -6,8 +6,8 @@ import {
   CardImage,
   CardContent,
 } from "@/components/UI/card/card";
-import classes from "./book-list.module.css";
 import { SummarizedBook } from "@/features/books/models/Book";
+import classes from "./book-list.module.css";
 import Link from "next/link";
 
 export default async function BookList({ userId }: { userId: number }) {

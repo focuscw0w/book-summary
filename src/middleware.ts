@@ -11,10 +11,8 @@ export default async function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
-  const isProtectedRoute = protectedRoutes.some((route) =>
-    path.startsWith(route)
-  );
-  const isPublicRoute = publicRoutes.some((route) => path.startsWith(route));
+  const isProtectedRoute = protectedRoutes.includes(path);
+  const isPublicRoute = publicRoutes.includes(path);
 
   const session = await getSession();
 

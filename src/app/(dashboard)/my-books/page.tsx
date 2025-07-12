@@ -1,4 +1,4 @@
-import { getUser } from "@/features/auth/lib/dal";
+import { getUser } from "@/features/auth/lib/session-dal";
 import { redirect } from "next/navigation";
 import { Suspense } from "react";
 import BookList from "@/features/books/components/book-list/book-list";

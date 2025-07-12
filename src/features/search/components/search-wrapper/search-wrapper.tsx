@@ -2,13 +2,11 @@
 
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-
 import useDebounce from "@/features/search/hooks/useDebounce";
 import fetchBook from "@/features/search/api/fetchBook";
-import classes from "./search-wrapper.module.css";
-
 import SearchInput from "../search-input/search-input";
 import SearchResults from "../search-results/search-results";
+import classes from "./search-wrapper.module.css";
 
 export default function SearchWrapper() {
   const [searchQuery, setSearchQuery] = useState("");

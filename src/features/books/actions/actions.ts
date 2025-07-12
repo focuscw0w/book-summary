@@ -1,8 +1,8 @@
 "use server";
 
 import { VolumeInfo } from "@/features/search/lib/definitions";
-import { createBook, deleteBook } from "../lib/dal";
-import { getUser } from "@/features/auth/lib/dal";
+import { createBook, deleteBook } from "../lib/database-dal";
+import { getUser } from "@/features/auth/lib/session-dal";
 import { redirect } from "next/navigation";
 
 export async function summarizeBook(bookInfo: VolumeInfo, bookName: string) {
@@ -28,7 +28,14 @@ export async function summarizeBook(bookInfo: VolumeInfo, bookName: string) {
   try {
     await createBook({ bookInfo, summarizedText, userId: user.id });
   } catch (error: unknown) {
-    throw new Error(`Error adding book to database. ${error}`);
+    console.error("Error summarizing book:", error);
+    return {
+      errors: {
+        message: [
+          "Sorry, we couldn't summarize the book. Please try again later.",
+        ],
+      },
+    };
   }
 
   redirect("/my-books");
@@ -44,7 +51,7 @@ export async function removeBook(bookId: number) {
   try {
     await deleteBook(user.id, bookId);
   } catch (error: unknown) {
-    console.log(error);
+    console.error("Error deleting book:", error);
     return {
       errors: {
         message: ["Something went wrong. Please try again later."],
