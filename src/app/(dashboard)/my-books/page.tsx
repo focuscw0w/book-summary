@@ -1,8 +1,6 @@
 import { getUser } from "@/features/auth/lib/session-dal";
 import { redirect } from "next/navigation";
-import { Suspense } from "react";
 import BookList from "@/features/books/components/book-list/book-list";
-import Spinner from "@/components/UI/spinner/spinner";
 
 export const metadata = {
   title: "My Books",
@@ -15,9 +13,5 @@ export default async function MyBooks() {
     redirect("/sign-in");
   }
 
-  return (
-    <Suspense fallback={<Spinner variant="Lines" color="black" />}>
-      <BookList userId={user.id} />
-    </Suspense>
-  );
+  return <BookList userId={user.id} />;
 }

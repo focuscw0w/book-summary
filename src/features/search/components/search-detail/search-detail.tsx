@@ -60,6 +60,7 @@ export default function SearchDetail({ bookInfo }: { bookInfo: VolumeInfo }) {
           <p>No cover available</p>
         )}
       </div>
+      {state?.errors && <p className={classes.error}>{state.errors.message}</p>}
       <form action={formAction}>
         <SubmitButton onPendingChange={setIsActiveOverlay}>
           Summarize
