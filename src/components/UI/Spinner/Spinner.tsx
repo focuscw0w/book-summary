@@ -7,10 +7,11 @@ type SpinnerVariant = "Lines" | "Hourglass";
 
 interface SpinnerSettings {
   variant: SpinnerVariant;
+  text: string;
   color: string;
 }
 
-export default function Spinner({ variant, color }: SpinnerSettings) {
+export default function Spinner({ variant, color, text }: SpinnerSettings) {
   return (
     <div className={classes.container}>
       <div className={classes.wrapper}>
@@ -27,10 +28,10 @@ export default function Spinner({ variant, color }: SpinnerSettings) {
           <Hourglass
             width="50"
             ariaLabel="hourglass-loading"
-            colors={["#000000", "#000000"]}
+            colors={[color, color]}
           />
         )}
-        <p>Searching your book...</p>
+        <p>{text}</p>
       </div>
     </div>
   );

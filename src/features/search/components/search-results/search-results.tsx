@@ -41,7 +41,10 @@ export default function SearchResults({
     setSelectedBook(null);
   }
 
-  if (isLoading) return <Spinner variant="Lines" color="#000000" />;
+  if (isLoading)
+    return (
+      <Spinner variant="Lines" text="Searching your book..." color="#000000" />
+    );
   if (error instanceof Error)
     return (
       <p className={classes.error}>

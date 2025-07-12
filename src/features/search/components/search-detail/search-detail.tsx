@@ -6,11 +6,16 @@ import { summarizeBook } from "@/features/books/actions/actions";
 import { useFormState } from "react-dom";
 import SubmitButton from "@/components/UI/submit-button/submit-button";
 import classes from "./search-detail.module.css";
+import Spinner from "@/components/UI/spinner/spinner";
 
 const maxDescriptionLength = 250;
 
 export default function SearchDetail({ bookInfo }: { bookInfo: VolumeInfo }) {
-  const summarizeBookAction = summarizeBook.bind(null, bookInfo, bookInfo.title);
+  const summarizeBookAction = summarizeBook.bind(
+    null,
+    bookInfo,
+    bookInfo.title
+  );
   const [state, formAction] = useFormState(summarizeBookAction, undefined);
 
   const description = truncateDescription(
@@ -40,6 +45,13 @@ export default function SearchDetail({ bookInfo }: { bookInfo: VolumeInfo }) {
       <form action={formAction}>
         <SubmitButton>Summarize</SubmitButton>
       </form>
+      <div className={classes.overlay}>
+        <Spinner
+          variant="Hourglass"
+          text="Please wait, your book is being summarized!"
+          color="white"
+        />
+      </div>
     </>
   );
 }
