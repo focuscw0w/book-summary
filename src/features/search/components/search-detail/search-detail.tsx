@@ -22,8 +22,8 @@ export default function SearchDetail({ bookInfo }: { bookInfo: VolumeInfo }) {
   );
   const [state, formAction] = useFormState(summarizeBookAction, undefined);
 
-  const [isActiveOverlay, setIsActiveOverlay] = useState(false);
   const router = useRouter();
+  const [isActiveOverlay, setIsActiveOverlay] = useState(false);
 
   useEffect(() => {
     if (state?.success) {

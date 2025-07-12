@@ -38,8 +38,7 @@ export async function summarizeBook(bookInfo: VolumeInfo, bookName: string) {
     };
   }
 
-  return { success: true }
-  //redirect("/my-books");
+  return { success: true };
 }
 
 export async function removeBook(bookId: number) {
