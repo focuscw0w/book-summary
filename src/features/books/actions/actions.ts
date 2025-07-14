@@ -1,7 +1,12 @@
 "use server";
 
 import { VolumeInfo } from "@/features/search/lib/definitions";
-import { createBook, deleteBook, getBookByTitle } from "../lib/database-dal";
+import {
+  createBook,
+  deleteBook,
+  getBookByID,
+  getBookByTitle,
+} from "../lib/database-dal";
 import { getUser } from "@/features/auth/lib/session-dal";
 import { redirect } from "next/navigation";
 import { SummarizedBook } from "../models/Book";
@@ -13,7 +18,14 @@ export async function summarizeBook(bookInfo: VolumeInfo, bookName: string) {
     throw new Error("Unauthorized");
   }
 
-  const book: SummarizedBook | null = await getBookByTitle(user.id, bookName);
+  let book: SummarizedBook | null;
+  try {
+    book = await getBookByTitle(user.id, bookName);
+  } catch (error: unknown) {
+    console.error("Error checking book existence:", error);
+    throw new Error("Book not found.");
+  }
+
   if (book) {
     return {
       errors: {
@@ -56,6 +68,22 @@ export async function removeBook(bookId: number) {
 
   if (!user) {
     throw new Error("Unauthorized");
+  }
+
+  let book: SummarizedBook | null;
+  try {
+    book = await getBookByID(bookId);
+  } catch (error: unknown) {
+    console.error("Error checking book existence:", error);
+    throw new Error("Failed getting book from database.");
+  }
+
+  if (!book) {
+    throw new Error("Book not found.");
+  }
+
+  if (user.id != book.userId) {
+    throw new Error("You do not have permission to delete this book.");
   }
 
   try {

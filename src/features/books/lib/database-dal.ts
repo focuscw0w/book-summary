@@ -60,6 +60,15 @@ export async function getBookByTitle(userId: number, title: string) {
   });
 }
 
+
+export async function getBookByID(bookId: number) {
+  return prisma.summarizedBook.findFirst({
+    where: {
+      id: bookId
+    },
+  });
+}
+
 export async function deleteBook(userId: number, bookId: number) {
   await prisma.summarizedBook.deleteMany({
     where: {
