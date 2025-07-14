@@ -6,7 +6,7 @@ import {
   deleteBook,
   getBookByID,
   getBookByTitle,
-} from "../lib/database-dal";
+} from "../lib/book-dal";
 import { getUser } from "@/features/auth/lib/session-dal";
 import { redirect } from "next/navigation";
 import { SummarizedBook } from "../models/Book";

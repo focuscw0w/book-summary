@@ -1,4 +1,4 @@
-export * from "./user";
+export * from "./user-dal";
 export * from "./password";
 export * from "./session";
 export * from "./validation";

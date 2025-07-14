@@ -1,5 +1,5 @@
 import { getUser } from "@/features/auth/lib/session-dal";
-import { getBookBySlug } from "@/features/books/lib/database-dal";
+import { getBookBySlug } from "@/features/books/lib/book-dal";
 import { SummarizedBook } from "@prisma/client";
 import { truncateDescription } from "@/lib/text";
 import { formatText } from "@/features/books/lib/text";
@@ -45,7 +45,10 @@ export default async function BookPage({
     redirect("/sign-in");
   }
 
-  const book = (await getBookBySlug(user.id, params.slug)) as SummarizedBook | null;
+  const book = (await getBookBySlug(
+    user.id,
+    params.slug
+  )) as SummarizedBook | null;
   if (!book) {
     notFound();
   }

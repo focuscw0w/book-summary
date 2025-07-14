@@ -1,4 +1,4 @@
-import { getAllBooks } from "@/features/books/lib/database-dal";
+import { getAllBooks } from "@/features/books/lib/book-dal";
 import {
   Card,
   CardTitle,
