@@ -1,9 +1,10 @@
 "use server";
 
 import { VolumeInfo } from "@/features/search/lib/definitions";
-import { createBook, deleteBook } from "../lib/database-dal";
+import { createBook, deleteBook, getBookByTitle } from "../lib/database-dal";
 import { getUser } from "@/features/auth/lib/session-dal";
 import { redirect } from "next/navigation";
+import { SummarizedBook } from "../models/Book";
 
 export async function summarizeBook(bookInfo: VolumeInfo, bookName: string) {
   const user = await getUser();
@@ -12,7 +13,14 @@ export async function summarizeBook(bookInfo: VolumeInfo, bookName: string) {
     throw new Error("Unauthorized");
   }
 
-  // check if book already exists
+  const book: SummarizedBook | null = await getBookByTitle(user.id, bookName);
+  if (book) {
+    return {
+      errors: {
+        message: ["This book is already in your summarized books."],
+      },
+    };
+  }
 
   const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/chat`, {
     method: "POST",

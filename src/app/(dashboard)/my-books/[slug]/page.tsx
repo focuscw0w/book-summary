@@ -1,5 +1,5 @@
 import { getUser } from "@/features/auth/lib/session-dal";
-import { getBook } from "@/features/books/lib/database-dal";
+import { getBookBySlug } from "@/features/books/lib/database-dal";
 import { SummarizedBook } from "@prisma/client";
 import { truncateDescription } from "@/lib/text";
 import { formatText } from "@/features/books/lib/text";
@@ -26,7 +26,7 @@ export async function generateMetadata({
 
   const slug = params.slug;
 
-  const book = await getBook(user.id, slug);
+  const book = await getBookBySlug(user.id, slug);
 
   return {
     title: book?.title || "Book Summary",
@@ -45,7 +45,7 @@ export default async function BookPage({
     redirect("/sign-in");
   }
 
-  const book = (await getBook(user.id, params.slug)) as SummarizedBook | null;
+  const book = (await getBookBySlug(user.id, params.slug)) as SummarizedBook | null;
   if (!book) {
     notFound();
   }

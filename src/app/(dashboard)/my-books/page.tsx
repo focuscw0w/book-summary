@@ -1,6 +1,6 @@
 import { getUser } from "@/features/auth/lib/session-dal";
 import { redirect } from "next/navigation";
-import { Metadata } from "next";
+import type { Metadata } from "next";
 import BookList from "@/features/books/components/book-list/book-list";
 
 export const metadata: Metadata = {

@@ -42,11 +42,20 @@ export async function getAllBooks(userId: number): Promise<SummarizedBook[]> {
   });
 }
 
-export async function getBook(userId: number, slug: string) {
+export async function getBookBySlug(userId: number, slug: string) {
   return prisma.summarizedBook.findFirst({
     where: {
       userId,
       slug,
+    },
+  });
+}
+
+export async function getBookByTitle(userId: number, title: string) {
+  return prisma.summarizedBook.findFirst({
+    where: {
+      userId,
+      title,
     },
   });
 }
