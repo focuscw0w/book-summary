@@ -42,7 +42,10 @@ export async function getAllBooks(userId: number): Promise<SummarizedBook[]> {
   });
 }
 
-export async function getBookBySlug(userId: number, slug: string) {
+export async function getBookBySlug(
+  userId: number,
+  slug: string
+): Promise<SummarizedBook | null> {
   return prisma.summarizedBook.findFirst({
     where: {
       userId,
@@ -51,7 +54,10 @@ export async function getBookBySlug(userId: number, slug: string) {
   });
 }
 
-export async function getBookByTitle(userId: number, title: string) {
+export async function getBookByTitle(
+  userId: number,
+  title: string
+): Promise<SummarizedBook | null> {
   return prisma.summarizedBook.findFirst({
     where: {
       userId,
@@ -60,11 +66,12 @@ export async function getBookByTitle(userId: number, title: string) {
   });
 }
 
-
-export async function getBookByID(bookId: number) {
+export async function getBookByID(
+  bookId: number
+): Promise<SummarizedBook | null> {
   return prisma.summarizedBook.findFirst({
     where: {
-      id: bookId
+      id: bookId,
     },
   });
 }

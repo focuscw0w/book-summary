@@ -9,24 +9,25 @@ import classes from "./page.module.css";
 import Image from "next/image";
 import BookControls from "@/features/books/components/book-controls/book-controls";
 
-interface MetadataProps {
+interface ParamsProps {
   params: { slug: string };
 }
 
 export async function generateMetadata({
   params,
-}: MetadataProps): Promise<Metadata> {
+}: ParamsProps): Promise<Metadata> {
   const user = await getUser();
+
   if (!user) {
     return {
-      title: "Unauthorized",
-      description: "You must be signed in to view this content.",
+      title: "Please sign in",
+      description: "You must be signed in to view this book.",
     };
   }
 
   const slug = params.slug;
 
-  const book = await getBookBySlug(user.id, slug);
+  const book = (await getBookBySlug(user.id, slug)) as SummarizedBook | null;
 
   return {
     title: book?.title || "Book Summary",
@@ -38,7 +39,7 @@ export async function generateMetadata({
 export default async function BookPage({
   params,
 }: {
-  params: { slug: string };
+  params: { slug: string; };
 }) {
   const user = await getUser();
   if (!user) {
