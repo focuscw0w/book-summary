@@ -1,7 +1,7 @@
 import { openai } from "@ai-sdk/openai";
 import { generateText } from "ai";
 
-export function generatePrompt(bookName: string) {
+function generatePrompt(bookName: string) {
   return `
 You are an expert book summarizer.
 

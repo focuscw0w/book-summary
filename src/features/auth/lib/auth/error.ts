@@ -1,9 +1,9 @@
 import { ZodSchema, z } from "zod";
 import { FormState } from "./definitions";
 
-export function formatErrors(
+export function formatErrors<T>(
   errorMessage: string,
-  schema: ZodSchema<any>
+  schema: ZodSchema<T>
 ): FormState {
   let defaultErrors = {};
 

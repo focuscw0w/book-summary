@@ -7,7 +7,7 @@ const secretKey = process.env.SESSION_SECRET;
 const encodedKey = new TextEncoder().encode(secretKey);
 
 // test expiration behavior
-export async function encrypt(payload: any) {
+export async function encrypt(payload: Record<string, unknown>) {
   return new SignJWT(payload)
     .setProtectedHeader({ alg: "HS256" })
     .setIssuedAt()
@@ -22,7 +22,10 @@ export async function decrypt(session: string | undefined = "") {
     });
     return payload;
   } catch (error: unknown) {
-    console.error("Failed to verify session");
+    if (error instanceof Error) {
+      console.error("Failed to verify session");
+
+    }
   }
 }
 
