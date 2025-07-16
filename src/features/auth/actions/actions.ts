@@ -15,6 +15,7 @@ import {
   FormState,
   formatErrors,
 } from "@/features/auth/lib/auth";
+import { User } from "../models/User";
 
 export async function createUser(prevState: FormState, formData: FormData) {
   const validatedFields = validateCredentials(createUserSchema, formData);
@@ -25,8 +26,7 @@ export async function createUser(prevState: FormState, formData: FormData) {
 
   const { email, password } = validatedFields.data;
 
-  // add a type for user
-  let foundUser;
+  let foundUser: User | null;
   try {
     foundUser = await findUserInDatabase(email);
   } catch (error: unknown) {
@@ -43,10 +43,13 @@ export async function createUser(prevState: FormState, formData: FormData) {
 
   const hashedPassword = await hashPassword(password);
 
-  // add a type for user
-  let user;
+  let user: User | null;
   try {
     user = await createUserInDatabase(email, hashedPassword);
+    
+    if (!user) {
+      return formatErrors("Error creating user.", createUserSchema);
+    }
   } catch (error: unknown) {
     return formatErrors(`Error creating user. ${error}`, createUserSchema);
   }
@@ -69,7 +72,7 @@ export async function loginUser(prevState: FormState, formData: FormData) {
 
   const { email, password } = validatedFields.data;
 
-  let foundUser;
+  let foundUser: User | null;
   try {
     foundUser = await findUserInDatabase(email);
   } catch (error: unknown) {
