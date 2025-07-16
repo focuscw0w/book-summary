@@ -1,4 +1,9 @@
-.container p {
+.container {
+  padding-bottom: 5rem;
+}
+
+.container p,
+.container li {
   font-size: 1.1rem;
   letter-spacing: 0.03em;
   word-spacing: 0.06em;
@@ -35,4 +40,26 @@
   width: 100%;
   background-color: #000000;
   height: 1px;
+}
+
+.summarization h1 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.summarization h2 {
+  font-size: 1.4rem;
+  margin-bottom: .3rem;
+}
+
+.summarization p,
+.summarization li {
+  margin-bottom: 1rem;
+}
+
+.summarization blockquote {
+  border-left: 3px solid #ccc;
+  padding-left: 1rem;
+  font-style: italic;
+  color: #555;
 }

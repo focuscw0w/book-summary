@@ -2,9 +2,9 @@ import { getUser } from "@/features/auth/lib/session-dal";
 import { getBookBySlug } from "@/features/books/lib/book-dal";
 import { SummarizedBook } from "@prisma/client";
 import { truncateDescription } from "@/lib/text";
-import { formatText } from "@/features/books/lib/text";
 import { notFound, redirect } from "next/navigation";
 import type { Metadata } from "next";
+import ReactMarkdown from "react-markdown";
 import classes from "./page.module.css";
 import Image from "next/image";
 import BookControls from "@/features/books/components/book-controls/book-controls";
@@ -39,7 +39,7 @@ export async function generateMetadata({
 export default async function BookPage({
   params,
 }: {
-  params: { slug: string; };
+  params: { slug: string };
 }) {
   const user = await getUser();
   if (!user) {
@@ -83,7 +83,9 @@ export default async function BookPage({
 
       <div className={classes.line}></div>
 
-      <p>{formatText(book.summarizedText)}</p>
+      <section className={classes.summarization}>
+        <ReactMarkdown>{book.summarizedText}</ReactMarkdown>
+      </section>
     </div>
   );
 }

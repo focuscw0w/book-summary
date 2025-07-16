@@ -45,10 +45,10 @@ export async function summarizeBook(bookInfo: VolumeInfo, bookName: string) {
     throw new Error("Failed to summarize book");
   }
 
-  const summarizedText: string = await response.json();
+  const data: { markdown: string } = await response.json();
 
   try {
-    await createBook({ bookInfo, summarizedText, userId: user.id });
+    await createBook({ bookInfo, data, userId: user.id });
   } catch (error: unknown) {
     console.error("Error summarizing book:", error);
     return {

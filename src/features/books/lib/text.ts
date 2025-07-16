@@ -6,10 +6,3 @@ export function slugify(text: string) {
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/(^-|-$)+/g, "");
 }
-
-export function formatText(text: string) {
-  return text
-    .replace(/#/g, "") 
-    .replace(/\*\*/g, "")
-    .trim();
-}
