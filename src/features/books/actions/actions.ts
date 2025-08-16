@@ -10,9 +10,10 @@ import {
 import { getUser } from "@/features/auth/lib/session-dal";
 import { redirect } from "next/navigation";
 import { SummarizedBook } from "../models/Book";
+import { User } from "@/features/auth/models/User";
 
 export async function summarizeBook(bookInfo: VolumeInfo, bookName: string) {
-  const user = await getUser();
+  const user = (await getUser()) as User;
 
   if (!user) {
     throw new Error("Unauthorized");
@@ -64,7 +65,7 @@ export async function summarizeBook(bookInfo: VolumeInfo, bookName: string) {
 }
 
 export async function removeBook(bookId: number) {
-  const user = await getUser();
+  const user = (await getUser()) as User;
 
   if (!user) {
     throw new Error("Unauthorized");
@@ -72,7 +73,7 @@ export async function removeBook(bookId: number) {
 
   let book: SummarizedBook | null;
   try {
-    book = await getBookByID(bookId);
+    book = await getBookByID(user.id, bookId);
   } catch (error: unknown) {
     console.error("Error checking book existence:", error);
     throw new Error("Failed getting book from database.");

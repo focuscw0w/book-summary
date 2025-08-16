@@ -8,15 +8,14 @@ import ReactMarkdown from "react-markdown";
 import classes from "./page.module.css";
 import Image from "next/image";
 import BookControls from "@/features/books/components/book-controls/book-controls";
-
-interface ParamsProps {
-  params: { slug: string };
-}
+import { User } from "@/features/auth/models/User";
 
 export async function generateMetadata({
   params,
-}: ParamsProps): Promise<Metadata> {
-  const user = await getUser();
+}: {
+  params: { slug: string };
+}): Promise<Metadata> {
+  const user = (await getUser()) as User;
 
   if (!user) {
     return {
@@ -27,7 +26,7 @@ export async function generateMetadata({
 
   const slug = params.slug;
 
-  const book = (await getBookBySlug(user.id, slug)) as SummarizedBook | null;
+  const book = (await getBookBySlug(user.id, slug)) as SummarizedBook;
 
   return {
     title: book?.title || "Book Summary",
@@ -41,15 +40,14 @@ export default async function BookPage({
 }: {
   params: { slug: string };
 }) {
-  const user = await getUser();
+  // TODO: make a function for this
+  // check if user -> get book by slug -> if not found, redirect to 404
+  const user = (await getUser()) as User;
   if (!user) {
     redirect("/sign-in");
   }
 
-  const book = (await getBookBySlug(
-    user.id,
-    params.slug
-  )) as SummarizedBook | null;
+  const book = (await getBookBySlug(user.id, params.slug)) as SummarizedBook;
   if (!book) {
     notFound();
   }

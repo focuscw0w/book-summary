@@ -1,5 +1,6 @@
-// DATA ACCESSS LAYER
-"server only";
+import { User } from "@/features/auth/models/User";
+
+("server only");
 
 import { redirect } from "next/navigation";
 import { getSession } from "./auth/session";
@@ -16,7 +17,7 @@ export const verifySession = cache(async () => {
   return { isAuth: true, userId: session.userId };
 });
 
-export const getUser = cache(async () => {
+export const getUser = cache(async (): Promise<User | null> => {
   const session = await verifySession();
   if (!session) return null;
 

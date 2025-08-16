@@ -52,10 +52,12 @@ export async function getBookByTitle(
 }
 
 export async function getBookByID(
+  userId: number,
   bookId: number
 ): Promise<SummarizedBook | null> {
   return prisma.summarizedBook.findFirst({
     where: {
+      userId,
       id: bookId,
     },
   });
