@@ -54,7 +54,7 @@ DATABASE_URL="file:./prisma/dev.db"
 1. Clone the repository:
   ```bash
   # Klonovanie projektu
-  git clone https://github.com/user/repo.git
+  git clone https://github.com/focuscw0w/book-summary.git
   cd book-summary
  ```
 2. npm install
