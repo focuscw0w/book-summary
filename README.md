@@ -27,4 +27,39 @@ With this app, users can:
 - **TypeScript** – type safety  
 - **Prisma** – database ORM  
 - **SQLite** – development database  
-- **CSS Modules** – styling  
+- **CSS Modules** – styling
+  
+## Environment Variables
+The project requires some environment variables to be set in a `.env` file.  
+Create a `.env` file in the root of your project with the following keys (example):
+
+```env
+# Google API Key (used for book search or related services)
+NEXT_PUBLIC_GOOGLE_API_KEY="your-google-api-key"
+
+# Base URL of the application (used for redirects, API calls, etc.)
+NEXT_PUBLIC_BASE_URL="http://localhost:3000"
+
+# Session secret for authentication
+SESSION_SECRET="your-session-secret"
+
+# OpenAI API key for generating book summaries
+OPENAI_API_KEY="your-openai-api-key"
+
+# Prisma database connection string
+DATABASE_URL="file:./prisma/dev.db"
+```
+
+## Installation & Setup
+1. Clone the repository:
+  ```bash
+  # Klonovanie projektu
+  git clone https://github.com/user/repo.git
+  cd book-summary
+ ```
+2. npm install
+3. Set up environment variables in .env (see Environment Variables).
+4. npx prisma migrate dev (this will also create prisma/dev.db if it doesn’t exist):
+5. npm run dev
+6. http://localhost:3000
+
